@@ -13,7 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   QuestionTag.associate = function(models) {
-    // associations can be defined here
+    QuestionTag.belongsTo(models.Tag, {
+      foreignKey: 'tagId'
+    });
+    QuestionTag.belongsTo(models.Question, {
+      foreignKey: 'questionId'
+    });
   };
   return QuestionTag;
 };

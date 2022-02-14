@@ -17,7 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   answerVote.associate = function(models) {
-    // associations can be defined here
+    AnswerVote.belongsTo(mdoels.Answer, {
+      foreignKey: 'answerId'
+    });
+    AnswerVote.belongsTo(mdoels.User, {
+      foreignKey: 'userId'
+    });
   };
   return answerVote;
 };

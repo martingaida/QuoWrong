@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Tag.associate = function(models) {
-    // associations can be defined here
+    const columMapping = {
+      through: 'QuestionTag',
+      otherKey: 'questionId',
+      foreignKey: 'tagId'
+    };
+
+    Tag.belongsToMany(models.Question, columMapping);
   };
   return Tag;
 };
