@@ -3,17 +3,17 @@ module.exports = (sequelize, DataTypes) => {
   const Answer = sequelize.define('Answer', {
     userId: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {model: "Users"}
     },
     questionId: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {model: "Questions"}
     },
     content: {
       allowNull: false,
-      type: Sequelize.TEXT
+      type: DataTypes.TEXT
     }
   }, {});
   Answer.associate = function(models) {

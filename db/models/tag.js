@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       allowNull: false,
       unique: true,
-      type: Sequelize.STRING(20)
+      type: DataTypes.STRING(20)
     },
   }, {});
   Tag.associate = function(models) {

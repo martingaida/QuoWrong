@@ -3,17 +3,17 @@ module.exports = (sequelize, DataTypes) => {
   const QuestionVote = sequelize.define('QuestionVote', {
     userId: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {model: "Users"}
     },
     questionId: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {model: "Questions"}
     },
     upVote: {
       allowNull: false,
-      type: Sequelize.BOOLEAN
+      type: DataTypes.BOOLEAN
     }
   }, {});
   QuestionVote.associate = function(models) {

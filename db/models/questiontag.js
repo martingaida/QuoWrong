@@ -4,12 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     questionId: {
       allowNull: false,
       references: { model: 'Questions'},
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     tagId: {
       allowNull: false,
       references: { model: 'Tags' },
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
   }, {});
   QuestionTag.associate = function(models) {
