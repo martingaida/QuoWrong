@@ -3,19 +3,34 @@ module.exports = (sequelize, DataTypes) => {
   const Question = sequelize.define('Question', {
     userId: {
       allowNull: false,
-      type: Sequelize.INTEGER,
-      references: {model: Users}
+      type: DataTypes.INTEGER,
+      references: {model: 'Users'}
     },
     headline: {
       allowNull: false,
-      type: Sequelize.STRING(250)
+      type: DataTypes.STRING(250)
     },
     content: {
-      type: Sequelize.TEXT
+      type: DataTypes.TEXT
     }
   }, {});
   Question.associate = function(models) {
-    // associations can be defined here
+    const columMapping = {
+      through: 'QuestionTag',
+      otherKey: 'tagId',
+      foreignKey: 'questionId'
+    }
+    
+    Question.hasMany(models.Answer, {
+      foreignKey: 'anwerId'
+    });
+    Question.hasMany(models.QuestionVote, {
+      foreignKey: 'questionId'
+    });
+    Question.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
+    Question.belongsToMany(models.Tag, columMapping);
   };
   return Question;
 };
