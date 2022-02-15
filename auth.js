@@ -7,7 +7,6 @@ const loginUser = (req, res, user) => {
 };
 
 const logoutUser = (req, res, next) => {
-  console.log('inside log out function', req.session.auth)
   delete req.session.auth;
   next();
 };
@@ -23,8 +22,6 @@ const requireAuth = (req, res, next) => {
 const restoreUser = async (req, res, next) => {
   // Log the session object to the console
   // to assist with debugging.
-  // console.log(req.session);
-  console.log('locals before if block 127??????????????????????????????', res.locals.authenticated)
 
   if (req.session.auth) {
     const { userId } = req.session.auth;
@@ -35,13 +32,11 @@ const restoreUser = async (req, res, next) => {
       if (user) {
         res.locals.authenticated = true;
         res.locals.user = user;
-        console.log('LOGGED===IN--=========r',res.locals.authenticated)
         next();
       }
     } catch (err) {
       res.locals.authenticated = false;
 
-      console.log('LOGGED===OUT=========r',res.locals.authenticated)
       next(err);
     }
   } else {
