@@ -8,10 +8,10 @@ block content
         +inputField('First Name', 'firstName', user.firstName, 'text')
         +inputField('Last Name', 'lastName', user.lastName, 'text')
         +inputField('Username', 'userName', user.userName, 'text')
-        +inputField('Email Adress', 'email', user.email, 'email')
+        +inputField('Email Address', 'email', user.email, 'email')
         +inputField('Password', 'password', null , 'password')
         +inputField('Confirm Password', 'confirmPassword', null , 'password')
         div
             button Submit
     div
-        p: a(href='/user/log-in') already have an account?
+        p: a(href='/users/log-in') already have an account?

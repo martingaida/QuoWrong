@@ -1,6 +1,7 @@
 const csrf = require('csurf')
 const csrfProtection = csrf({ cookie:true });
 const { check, validationResult} = require('express-validator');
+const db = require('../db/models');
 
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
@@ -30,7 +31,7 @@ const userValidators = [
             }
           });
       }),
-    check('emailAddress')
+    check('email')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a value for Email Address')
       .isLength({ max: 200 })
@@ -38,7 +39,7 @@ const userValidators = [
       .isEmail()
       .withMessage('Email Address is not a valid email')
       .custom((value) => {
-        return db.User.findOne({ where: { emailAddress: value } })
+        return db.User.findOne({ where: { email: value } })
           .then((user) => {
             if (user) {
               return Promise.reject('The provided Email Address is already in use by another account');
