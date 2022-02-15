@@ -5,4 +5,11 @@ html
         title="QuoWrong"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    nav
+      form( action='/users/logout' method='post')
+        button( type='submit') Logout
+
+      span()
+        a( href='/users/login') Login
+        a( href='/users/sign-up') Sign Up
     block content
