@@ -66,8 +66,18 @@ const userValidators = [
       }),
   ];
 
+  const loginValidators = [
+    check('userName')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for Userame'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for Password'),
+  ];
+
 module.exports = {
     csrfProtection,
     asyncHandler,
-    userValidators
+    userValidators,
+    loginValidators
 }
