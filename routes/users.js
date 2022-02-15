@@ -6,7 +6,7 @@ const db = require('../db/models')
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
-const { Session } = require('express-session');
+// const { Session } = require('express-session');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
