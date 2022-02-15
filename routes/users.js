@@ -6,7 +6,7 @@ const db = require('../db/models')
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const { loginUser, logoutUser } = require('../auth');
-// const { Session } = require('express-session');
+
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -45,7 +45,7 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler(async (req,
     user.hashedPassword = hashedPassword;
     await user.save();
     // loginUser(req, res, user);
-    res.redirect('/');
+    res.redirect('/users/login');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('sign-up', {
@@ -86,7 +86,9 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
       if (passwordMatch) {
         loginUser(req, res, user);
 
-        return res.redirect('/');
+        req.session.save(() => {
+          return res.redirect('/');
+        });
       }
     }
 
@@ -94,22 +96,22 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     errors.push('Login failed for the provided UserName and password');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
+    //user was not logged in, reload log in page
+    res.render('login', {
+      title: 'Login',
+      userName,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
   }
-//user was not logged in, reload log in page
-  res.render('login', {
-    title: 'Login',
-    userName,
-    errors,
-    csrfToken: req.csrfToken(),
-  });
 }))
 
 
 router.post('/logout', logoutUser, (req, res) => {
-  console.log(req.session.auth)
-  console.log("logged==out===router")
-  console.log(req.session.auth)
-  res.redirect('/');
+
+  req.session.save(() => {
+    res.redirect('/')
+})
 
 });
 
