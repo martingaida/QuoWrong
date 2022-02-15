@@ -1,0 +1,16 @@
+
+mixin inputField ( labelText, name, value, fieldType, placeholder=null)
+    div(class="formInputs")
+        label(for=name)= labelText
+        if fieldType === 'textarea'
+            textarea(name=name, cols="30", rows="10")= value
+        else
+            input(type=fieldType name=name value=value id=name placeholder=placeholder)
+
+mixin validationErrorSummary(errors)
+  if errors
+    div(class='alert alert-danger' role='alert')
+      p The following error(s) occurred:
+      ul
+        each error in errors
+          li= error
