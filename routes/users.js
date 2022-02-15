@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { csrfProtection, asyncHandler, userValidators } = require('./utils');
 const db = require('../db/models')
-const { User } = db;
+// const { User } = db;
 const bcrypt = require('bcryptjs');
 const { check, validationResult} = require('express-validator');
 
@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/sign-up', csrfProtection, (req, res, next) => {
-  const user = User.build();
+  const user = db.User.build();
   res.render('sign-up', {
     title: 'Sign Up!',
     user,
@@ -22,7 +22,7 @@ router.get('/sign-up', csrfProtection, (req, res, next) => {
 
 router.post('/sign-up', csrfProtection, userValidators, asyncHandler(async (req, res) => {
   const {
-    emailAddress,
+    email,
     firstName,
     lastName,
     userName,
@@ -30,7 +30,7 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler(async (req,
   } = req.body;
 
   const user = db.User.build({
-    emailAddress,
+    email,
     firstName,
     lastName,
     userName
@@ -42,7 +42,7 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler(async (req,
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    loginUser(req, res, user);
+    // loginUser(req, res, user);
     res.redirect('/');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
