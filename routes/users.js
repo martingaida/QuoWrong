@@ -85,7 +85,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
       if (passwordMatch) {
         loginUser(req, res, user);
-        
+
         return res.redirect('/');
       }
     }
@@ -105,13 +105,12 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 }))
 
 
-router.post('/logout', (req, res) => {
+router.post('/logout', logoutUser, (req, res) => {
+  console.log(req.session.auth)
+  console.log("logged==out===router")
+  console.log(req.session.auth)
+  res.redirect('/');
 
-
-  logoutUser(req, res);
-
-  res.render('logout')
-  
 });
 
 
