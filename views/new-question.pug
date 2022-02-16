@@ -1,0 +1,9 @@
+
+
+form(action='/questions/new' method='post')
+  input(type='hidden' name='_csrf' value=csrfToken)
+  label(for='headline') Headline 
+  input(type='text' name='headline')
+  label(for='content') Content 
+  textarea(name='content')
+  button(type='submit') Submit
