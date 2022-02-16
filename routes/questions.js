@@ -9,7 +9,7 @@ const csrfProtection = csrf({ cookie:true });
 router.get('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
 
   const questions = await Question.findAll({
-    include: [ 'Answers', 'QuestionVotes', 'Tags', 'Users'],
+    include: [ 'Answers', 'QuestionVotes', 'Tags', 'User'],
     order: [['createdAt']]
   });
 
@@ -21,10 +21,9 @@ router.get('/:id', requireAuth, csrfProtection, asyncHandler( async (req, res, n
 
   const { id } = req.params
   const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes','User']});
-  const questions = [];
-  questions.push(question);
 
-  res.render('index', { title: 'Look at this one question', questions, csrfToken:req.csrfToken()})
+
+  res.render('question', {  question, csrfToken:req.csrfToken()})
 }))
 
 
