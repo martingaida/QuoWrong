@@ -2,14 +2,26 @@ extends layout.pug
 include utils.pug
 
 block content
-    +validationErrorSummary(errors)
-    form(action='/users/login' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +inputField('Username', 'userName', userName , 'text')
-        +inputField('Password', 'password', null , 'password')
-        div(class='py-4')
-            button(type='submit' class='btn btn-primary') Login
-            a(href='/' class='btn btn-warning ml-2') Cancel
-    div
-    p: a(href='/users/sign-up') Don't have an account?
-    +demoUser()
+    div(id='login-page')
+        div(id='login-form')
+            h1 QuoWrong
+            h2 A place to share knowledge and better understand the world
+            +validationErrorSummary(errors)
+            div(id='login-form-top')
+                p Login
+            form(action='/users/login' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                p Username
+                +inputField(null, 'userName', userName , 'text')
+                p Password
+                +inputField(null, 'password', null , 'password')
+                div(id='login-form-bottom')
+                    a(href='/users/sign-up' class='btn-grey-a') Don't have an account?
+                    button(type='submit' class='btn-blue') Login
+            +demoUser()
+            div(id='login-form-footer')
+                p Express 
+                p SQL 
+                p JavaScript 
+                p HTML 
+                p CSS
