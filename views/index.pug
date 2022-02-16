@@ -8,11 +8,14 @@ append head
 
 block content
   h1= title
-  
+
   div
-    if questions 
-      div 
-        for question in questions 
-          div 
-            h3= question.headline 
+    if questions
+      div
+        for question in questions
+          div(class="question-card")
+            h3= question.headline
             p= question.content
+            div
+              for Answer in question.Answers
+                p= Answer.content
