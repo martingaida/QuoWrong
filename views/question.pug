@@ -9,18 +9,22 @@ append head
 
 block content
 
-    div#question-page
-        div#question-card
-            h3= question.headline
+    div(id='question-page')
+        div( id='question-card')
+            h2= question.headline
             p= question.content
         form(action='/answers/new' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' name='questionId' value=question.id)
             input(type='text' name='content' placeholder='have an answer?')
+            div
+                button(type='submit' class='btn-red') Submit
 
         div(class="answer-zone")
             h2 Answers
-            for Answer in question.Answers
-                div(class='answer-card')
-                    p= Answer.userName
-                    p= Answer.content
+            ul(class='answers-list')
+                for Answer in question.Answers
+                    li(class='answer')
+                        div(class='answer-card')
+                            p= Answer.userName
+                            p= Answer.content
