@@ -7,15 +7,15 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  nav(class='nav-bar')
-    a(href='/') Quora
-    form(action='/questions/new-question' method='get')
+  div(class='nav-bar')
+    h1: a(href='/') Quora
+    form(action='/questions/new' method='get')
       button(type='submit' class='btn-red') Add Question
     form(action='/search' method='post')
-      input(type='search' name='search' id='search-bar')
+      input(type='search' name='search' id='search-bar' placeholder='SEARCH')
     if locals.authenticated
       form( action='/users/logout' method='post')
-        button(type='submit' class='btn-red') Logout
+        button(type='submit' class='btn-beige') Logout
     else
       span()
         a( href='/users/login') Login
@@ -26,7 +26,12 @@ block content
     div(class='content-left')
       if tags 
         for tag in tags 
-          div(class='')
+          div(class='tag-card')
+            p= tag.name
+      p Ghostbusters
+      p Scooby-Doo
+      p Bagels 
+      p FloridaMan
     div(class='content-center')
       if questions
         div
