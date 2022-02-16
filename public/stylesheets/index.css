@@ -126,14 +126,23 @@ h2 {
     justify-content: flex-start;
     align-items: center;
     min-width: 150px;
-    min-height: 500px;
+    min-height: 150px;
+    border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
 }
 
 .content-center {
     background-color: white;
     width: 600px;
     min-height: 500px;
-    margin: 0 50px 0 25px;
+    margin: 0 25px 0 25px;
 }
 
-/* nothign to see here
+.content-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 200px;
+    height: 450px;
+    background-color: white;
+}
