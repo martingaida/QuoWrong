@@ -1,4 +1,3 @@
-
 mixin inputField ( labelText, name, value, fieldType, placeholder=null)
     div(class="formInputs")
         label(for=name)= labelText
@@ -9,8 +8,8 @@ mixin inputField ( labelText, name, value, fieldType, placeholder=null)
 
 mixin validationErrorSummary(errors)
   if errors
-    div(class='alert alert-danger' role='alert')
-      p The following error(s) occurred:
+    div(class='error-messages' role='alert')
+      //- p The following error(s) occurred:
       ul
         each error in errors
           li= error

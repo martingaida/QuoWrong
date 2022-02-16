@@ -2,24 +2,24 @@ extends layout.pug
 include utils.pug
 
 block content
-    div(id='login-page')
-        div(id='login-form')
+    div(id='auth-page')
+        div(id='auth-form')
             h1 QuoWrong
-            h2 A place to share knowledge and better understand the world
+            h2 A place to share your lack of knowledge
             +validationErrorSummary(errors)
-            div(id='login-form-top')
+            div(id='auth-form-top')
                 p Login
             form(action='/users/login' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 p Username
-                +inputField(null, 'userName', userName , 'text')
+                input(type='text' name='userName' value=userName id='userName' placeholder='johndoe')
                 p Password
-                +inputField(null, 'password', null , 'password')
-                div(id='login-form-bottom')
-                    a(href='/users/sign-up' class='btn-grey-a') Don't have an account?
-                    button(type='submit' class='btn-blue') Login
+                input(type='text' name='password' value=password id='password' placeholder='••••••••')
+                div(id='auth-form-bottom')
+                    a(href='/users/sign-up' id='btn-grey-a') Don't have an account?
+                    button(type='submit' id='btn-blue-login') Login
             +demoUser()
-            div(id='login-form-footer')
+            div(id='auth-form-footer')
                 p Express 
                 p SQL 
                 p JavaScript 
