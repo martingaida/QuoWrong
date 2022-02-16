@@ -5,14 +5,6 @@ html
         title="QuoWrong"
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/index.css')
-        link(rel='stylesheet' href='/stylesheets/login.css')
+        link(rel='stylesheet' href='/stylesheets/auth.css')
   body
-    nav
-      if locals.authenticated
-        form( action='/users/logout' method='post')
-          button( type='submit') Logout
-      else
-        span()
-          a( href='/users/login') Login
-          a( href='/users/sign-up') Sign Up
     block content

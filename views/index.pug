@@ -7,6 +7,14 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
+  nav
+      if locals.authenticated
+        form( action='/users/logout' method='post')
+          button( type='submit') Logout
+      else
+        span()
+          a( href='/users/login') Login
+          a( href='/users/sign-up') Sign Up
   h1= title
   p Welcome to your Project Skeleton
   if locals.authenticated 

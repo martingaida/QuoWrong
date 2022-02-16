@@ -2,16 +2,27 @@ extends layout.pug
 include utils.pug
 
 block content
-    +validationErrorSummary(errors)
-    form(action='/users/sign-up' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +inputField('First Name', 'firstName', user.firstName, 'text')
-        +inputField('Last Name', 'lastName', user.lastName, 'text')
-        +inputField('Username', 'userName', user.userName, 'text')
-        +inputField('Email Address', 'email', user.email, 'email')
-        +inputField('Password', 'password', null , 'password')
-        +inputField('Confirm Password', 'confirmPassword', null , 'password')
-        div
-            button Submit
-    div
-        p: a(href='/users/login') already have an account?
+    div(id='auth-page')
+        div(id='auth-form')
+            h1 QuoWrong
+            +validationErrorSummary(errors)
+            div(id='auth-form-top')
+                p Sign-up
+            form(action='/users/sign-up' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                // (type=fieldType name=name value=value id=name placeholder=placeholder)
+                p First Name
+                input(type='text' name='firstName' value=user.firstName id='firstName' placeholder='John')
+                p Last Name
+                input(type='text' name='lastName' value=user.lastName id='lastName' placeholder='Doe')
+                p Username
+                input(type='text' name='userName' value=user.userName id='userName' placeholder='johndoe')
+                p E-mail Address
+                input(type='email' name='email' value=user.email id='email' placeholder='johndoe@gmail.com')
+                p Password
+                input(type='password' name='password' value=null id='password' placeholder='••••••••')
+                p Confirm Password
+                input(type='password' name='confirmPassword' value=null id='password' placeholder='••••••••')
+                div(id='auth-form-bottom')
+                    p: a(href='/users/login' id='btn-grey-a') already have an account?
+                    button(type='submit' id='btn-blue-signup') Submit
