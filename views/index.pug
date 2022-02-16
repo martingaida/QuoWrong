@@ -7,23 +7,34 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  nav
-      if locals.authenticated
-        form( action='/users/logout' method='post')
-          button( type='submit') Logout
-      else
-        span()
-          a( href='/users/login') Login
-          a( href='/users/sign-up') Sign Up
+  nav(class='nav-bar')
+    a(href='/') Quora
+    form(action='/questions/new-question' method='get')
+      button(type='submit' class='btn-red') Add Question
+    form(action='/search' method='post')
+      input(type='search' name='search' id='search-bar')
+    if locals.authenticated
+      form( action='/users/logout' method='post')
+        button(type='submit' class='btn-red') Logout
+    else
+      span()
+        a( href='/users/login') Login
+        a( href='/users/sign-up') Sign Up
   h1= title
 
-  div
-    if questions
-      div
-        for question in questions
-          div(class="question-card")
-            h3= question.headline
-            p= question.content
-            div
-              for Answer in question.Answers
-                p= Answer.content
+  div(class='main-container')
+    div(class='content-left')
+      if tags 
+        for tag in tags 
+          div(class='')
+    div(class='content-center')
+      if questions
+        div
+          for question in questions
+            div(class='question-card')
+              h3= question.headline
+              p= question.content
+              div
+                for Answer in question.Answers
+                  p= Answer.content
+    div(class='content-right')

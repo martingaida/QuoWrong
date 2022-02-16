@@ -50,3 +50,13 @@ h2 {
 .btn-grey:hover {
     background-color: rgba(0, 0, 0, 0.6);
 }
+
+.btn-red {
+    background-color: rgb(185, 43, 39);
+    color: white;
+    border-color: transparent;
+    border-radius: 25px;
+    min-width: 75px;
+    min-height: 25px;
+    padding: 10px 15px 10px 15px;
+}
