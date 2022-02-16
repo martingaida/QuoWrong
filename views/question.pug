@@ -13,13 +13,19 @@ block content
         div( id='question-card')
             h2= question.headline
             p= question.content
+            if question.userId === locals.user.dataValues.id
+                form(action=`/questions/edit/${question.id}` method="post")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    button edit
+                form(action=`/questions/delete/${question.id}` method="post")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    button delete
         form(action='/answers/new' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             input(type='hidden' name='questionId' value=question.id)
             input(type='text' name='content' placeholder='have an answer?')
             div
                 button(type='submit' class='btn-red') Submit
-
         div(class="answer-zone")
             h2 Answers
             ul(class='answers-list')
