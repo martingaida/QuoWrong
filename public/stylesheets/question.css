@@ -1,0 +1,18 @@
+#question-page {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(241,242,242) ;
+}
+
+#question-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white ;
+    border-radius: 5px;
+
+}
