@@ -8,6 +8,11 @@ append head
 
 block content
   h1= title
-  p Welcome to your Project Skeleton
-  if locals.authenticated 
-    p working
+  
+  div
+    if questions 
+      div 
+        for question in questions 
+          div 
+            h3= question.headline 
+            p= question.content

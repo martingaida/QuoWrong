@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     
     Question.hasMany(models.Answer, {
-      foreignKey: 'anwerId'
+      foreignKey: 'questionId'
     });
     Question.hasMany(models.QuestionVote, {
       foreignKey: 'questionId'
