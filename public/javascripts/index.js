@@ -23,7 +23,23 @@ window.addEventListener('DOMContentLoaded', (event)=>{
                 })
             });
             const data = await res.json()
+
             console.log(data)
+
+            if(data.errors) {
+                const errorBox = document.querySelectorAll('#edit-form > #errorDisplay').forEach(form => {
+                    form.hidden = false;
+                    form.value = data.errors;
+                });
+                
+            } else {
+                const errorBox = document.querySelectorAll('#edit-form > #errorDisplay').forEach(form => {
+                    form.hidden = true;
+                });
+
+                const answerDisplay = document.querySelector(`#contentDisplay-${answerId}`).innerHTML = data.data.content
+
+            }
         })
 
     })
