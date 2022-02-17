@@ -10,6 +10,18 @@ append head
 
 block content
     +navbar()
+
+    div(class='content')
+        div(class='main-container-detail')
+            div(class='content-center')
+                div(class='q-card-detail')
+                    div(class='q-card-top')
+                        h3= question.headline
+                        div(class='q-content')
+                            p= question.content
+                    div(class='q-bottom')
+                        div(class='qa-votes')
+
     div(class='q-card')
         div(class='q-card-top')
             h3= question.headline
@@ -63,7 +75,64 @@ block content
                                     button(type='submit' id='delete-btn') Delete
 
                             div(class='question-votes')
+
                             form(action='/questionvotes' method='post')
-                                button(type='submit' class='btn-upvote') Upvote
+                                input(type='hidden' name='questionId' value=question.id)
+                                div
+                                    button(type='submit' class='btn-vote') &#8679
                             form(action='/questionvotes/delete' method='post')
-                                button(type='submit' class='btn-downvote') Downvote
+                                input(type='hidden' name='questionId' value=question.id)
+                                div
+                                    button(type='submit' class='btn-vote') &#8681
+                        if question.userId === locals.user.dataValues.id
+                            form(action=`/questions/edit/${question.id}` method="post")
+                                input(type="hidden" name="_csrf" value=csrfToken)
+                                input(type='hidden' name='questionId' value=question.id)
+                                div
+                                    button(type='submit' class='btn-grey' id='qa-detail-edit') Edit
+                            form(action=`/questions/delete/${question.id}` method="post")
+                                input(type="hidden" name="_csrf" value=csrfToken)
+                                input(type='hidden' name='questionId' value=question.id)
+                                div
+                                    button(type='submit' class='btn-grey-l') Delete
+                        
+
+                    div(class="answer-zone")
+                        h2 Answers:
+                        form(action='/answers/new' method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            input(type='hidden' name='questionId' value=question.id)
+                            input(type='text' name='content' placeholder='Have an answer?')
+                            div
+                                button(type='submit' class='btn-red') Submit
+                        ul(class='answer-list')
+                            for answer in question.Answers
+                                li(class='answer')
+                                    div(class='answer-card')
+                                        p= answer.userName
+                                        p= answer.content
+                                        div(class='qa-votes')
+                                            if answer.userId === locals.user.dataValues.id
+                                                div(class='a-votes')
+                                                    form(action='/answervotes' method='post')
+                                                        input(type='hidden' name='_csrf' value=csrfToken)
+                                                        input(type='hidden' name='questionId' value=answer.id)
+                                                        div
+                                                            button(type='submit' class='btn-vote') &#8679
+                                                    form(action='/answervotes/delete' method='post')
+                                                        input(type='hidden' name='_csrf' value=csrfToken)
+                                                        input(type='hidden' name='questionId' value=answer.id)
+                                                        div
+                                                            button(type='submit' class='btn-vote') &#8681
+
+                                                form(action=`/answers/edit/${answer.id}` method='post')
+                                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                                    input(type='hidden' name='questionId' value=answer.id)
+                                                    div
+                                                        button(type='submit' class='btn-grey' id='qa-detail-edit') Edit
+                                                form(action=`/answers/delete/${answer.id}` method='post')
+                                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                                    input(type='hidden' name='questionId' value=answer.id)
+                                                    div    
+                                                        button(type='submit' class='btn-grey-l') Delete
+                                            
