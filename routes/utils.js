@@ -75,6 +75,14 @@ const userValidators = [
       .withMessage('Please provide a value for Password'),
   ];
 
+  const answerValidators = [
+    check('questionId')
+      .exists({ checkFalsy: true })
+      .withMessage('answer not for a valid a question.'),
+    check('content')
+      .exists({ checkFalsy: true })
+      .withMessage('please at least TRY and answer the question'),
+  ]
 
 
   const questionValidators = [
@@ -90,5 +98,6 @@ module.exports = {
     asyncHandler,
     userValidators,
     loginValidators,
-    questionValidators
+    questionValidators,
+    answerValidators
 }
