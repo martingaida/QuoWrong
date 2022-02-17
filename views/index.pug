@@ -1,4 +1,5 @@
-extends layout
+extends layout.pug
+include utils.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -7,20 +8,7 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  div(class='nav-container')
-    div(class='nav-bar')
-      h1: a(href='/') QuoWrong
-      form(action='/questions/new' method='get')
-        button(type='submit' class='btn-red') Add Question
-      form(action='/search' method='post')
-        input(type='search' name='search' id='search-bar' placeholder='Search QuoWrong')
-      if locals.authenticated
-        form( action='/users/logout' method='post')
-          button(type='submit' class='btn-beige') Logout
-      else
-        span()
-          a( href='/users/login') Login
-          a( href='/users/sign-up') Sign Up
+  +navbar()
   h1= title
   div(class='content')
     div(class='main-container')

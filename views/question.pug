@@ -1,4 +1,5 @@
-extends layout
+extends layout.pug 
+include utils.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -8,6 +9,7 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
+    +navbar()
     div(class='q-card')
         div(class='q-card-top')
             h3= question.headline
@@ -31,14 +33,14 @@ block content
                 button(type='submit' class='btn-upvote') Upvote
             form(action='/questionvotes/delete' method='post')
                 button(type='submit' class='btn-downvote') Downvote
+        div(class="answer-zone")
+            h2 Answers
             form(action='/answers/new' method='post')
                 input(type='hidden' name='_csrf' value=csrfToken)
                 input(type='hidden' name='questionId' value=question.id)
                 input(type='text' name='content' placeholder='have an answer?')
                 div
                     button(type='submit' class='btn-red') Submit
-        div(class="answer-zone")
-            h2 Answers
             ul(class='answers-list')
                 for answer in question.Answers
                     li(class='answer')
@@ -63,9 +65,3 @@ block content
                                 button(type='submit' class='btn-upvote') Upvote
                             form(action='/questionvotes/delete' method='post')
                                 button(type='submit' class='btn-downvote') Downvote
-                            form(action='/answers/new' method='post')
-                                input(type='hidden' name='_csrf' value=csrfToken)
-                                input(type='hidden' name='questionId' value=question.id)
-                                input(type='text' name='content' placeholder='have an answer?')
-                                div
-                                    button(type='submit' class='btn-red') Submit
