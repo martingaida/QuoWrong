@@ -68,9 +68,10 @@ router.post('/new', requireAuth, csrfProtection, questionValidators, asyncHandle
 router.post('/edit/:id(\\d+)', requireAuth, csrfProtection, questionValidators, asyncHandler( async (req, res, next) => {
 
   const { headline, content } = req.body
+
+  const { userId } = req.session.auth
   const validatorErrors = validationResult(req);
 
-  console.log(validatorErrors)
 
   if (validatorErrors.isEmpty()) {
 
@@ -91,6 +92,7 @@ router.post('/edit/:id(\\d+)', requireAuth, csrfProtection, questionValidators, 
     });
   }
 
+
 }))
 
 router.post('/delete/:id(\\d+)',  requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
@@ -103,6 +105,11 @@ router.post('/delete/:id(\\d+)',  requireAuth, csrfProtection, asyncHandler( asy
 
   res.redirect('/questions');
 }));
+
+
+  
+}))
+
 
 
 
