@@ -50,15 +50,16 @@ block content
                             div(class='q-bottom')
 
                             if answer.userId === locals.user.dataValues.id
-                                form(action=`/answers/edit/${answer.id}` method='post')
-                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                form(action=`/api/edit/${answer.id}` method='post' id='edit-form')
+                                    //- input(type='hidden' name='_csrf' id='answerCSRF' value=csrfToken)
+                                    input(type='hidden' name='answerId' value=answer.id)
                                     input(type='hidden' name='questionId' value=question.id)
                                     label(for='content') Content
                                     textarea(name='content' value=answer.content)
-                                    button(type='submit') Edit
+                                    button(type='submit' id=`editAnswer-${answer.id}`) Edit
                                 form(action=`/answers/delete/${answer.id}` method='post')
                                     input(type='hidden' name='_csrf' value=csrfToken)
-                                    button(type='submit') Delete
+                                    button(type='submit' id='delete-btn') Delete
 
                             div(class='question-votes')
                             form(action='/questionvotes' method='post')
