@@ -23,7 +23,6 @@ router.post('/new', requireAuth, csrfProtection, answerValidators, asyncHandler(
       res.redirect(`/questions/${questionId}`);
 
     } else {
-
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render('question', {
         title: 'invalid answer',
@@ -34,5 +33,42 @@ router.post('/new', requireAuth, csrfProtection, answerValidators, asyncHandler(
     }
   }));
 
+
+router.post('/edit/:id(\\d+)', requireAuth, csrfProtection, answerValidators, asyncHandler( async (req, res, next) => {
+
+    const { questionId, content } = req.body
+    const { userId } = req.session.auth
+    const validatorErrors = validationResult(req);
+
+
+    if (validatorErrors.isEmpty()) {
+
+      const answer = await Answer.findByPk(req.params.id);
+      question.content = content;
+      await answer.save();
+
+      res.redirect(`/questions/${questionId}`)
+    } else {
+      const errors = validatorErrors.array().map((error) => error.msg);
+
+      res.render('question', {
+        title: 'Edit',
+        errors,
+        csrfToken: req.csrfToken(),
+      });
+    }
+  }))
+
+
+router.post('/delete/:id(\\d+)',  requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
+
+    const id  = req.params.id;
+
+    const answer = await Answer.findByPk(id);
+    const questionId = answer.questionId
+    await answer.destroy();
+
+    res.redirect(`/questions/${questionId}`);
+  }));
 
 module.exports = router;
