@@ -12,9 +12,11 @@ const usersRouter = require('./routes/users');
 const answerRouter = require('./routes/answer')
 const questionsRouter = require('./routes/questions')
 const { sessionSecret } = require('./config');
-
-
+const apiRouter = require('./routes/api');
 const app = express();
+const csrf = require('csurf');
+const csrfProtection = csrf({ cookie:true });
+
 
 // view engine setup
 app.set('view engine', 'pug');
@@ -40,8 +42,10 @@ app.use(
 
 // Requires to be logged in to view any page
 // Or restores user session
-app.use(restoreUser);
 
+app.use(restoreUser);
+app.use('/api', apiRouter);
+app.use(csrfProtection)
 
 // create Session table if it doesn't already exist
 store.sync();

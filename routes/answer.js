@@ -34,7 +34,7 @@ router.post('/new', requireAuth, csrfProtection, answerValidators, asyncHandler(
   }));
 
 
-router.post('/edit/:id(\\d+)', requireAuth, csrfProtection, answerValidators, asyncHandler( async (req, res, next) => {
+router.put('/edit/:id(\\d+)', requireAuth, csrfProtection, answerValidators, asyncHandler( async (req, res, next) => {
     const { questionId, content } = req.body
     const { userId } = req.session.auth
     const validatorErrors = validationResult(req);
@@ -46,7 +46,9 @@ router.post('/edit/:id(\\d+)', requireAuth, csrfProtection, answerValidators, as
       answer.content = content;
       await answer.save();
 
-      res.redirect(`/questions/${questionId}`)
+      //res.redirect(`/questions/${questionId}`)
+      res.json({data: answer});
+
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
 

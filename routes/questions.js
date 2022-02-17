@@ -24,6 +24,7 @@ router.get('/:id(\\d+)', requireAuth, csrfProtection, asyncHandler( async (req, 
   const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes','User']});
 
 
+  //res.render('question', {  question })
   res.render('question', {  question, csrfToken:req.csrfToken()})
 }))
 
