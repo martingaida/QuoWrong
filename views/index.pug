@@ -64,13 +64,17 @@ block content
               form(action='/questionvotes/delete' method='post')
                 button(type='submit' class='btn-downvote') Downvote
         if questions
-          div
+          div(class='q-card')
             for question in questions
-              div(class='question-card')
+              div(class='q-card-top')
                 h3: a(href=`/questions/${question.id}`)= question.headline
-                p= question.content
-                div
-                  for Answer in question.Answers
-                    p= Answer.content
+                div(class='q-content')
+                  p= question.content
+              div(class='q-bottom')
+                div(class='question-votes')
+                  form(action='/questionvotes' method='post')
+                    button(type='submit' class='btn-upvote') Upvote
+                  form(action='/questionvotes/delete' method='post')
+                    button(type='submit' class='btn-downvote') Downvote
       div(class='content-right')
         h3 Ads?
