@@ -16,7 +16,11 @@ block content
             if question.userId === locals.user.dataValues.id
                 form(action=`/questions/edit/${question.id}` method="post")
                     input(type="hidden" name="_csrf" value=csrfToken)
-                    button edit
+                    label(for='headline') Headline
+                    input(type='text' name='headline' value=question.headline)
+                    label(for='content') Content 
+                    textarea(name='content')
+                    button(type='submit') edit
                 form(action=`/questions/delete/${question.id}` method="post")
                     input(type="hidden" name="_csrf" value=csrfToken)
                     button delete
