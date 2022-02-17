@@ -108,9 +108,10 @@ h2 {
 .main-container {
     display: flex;
     flex-direction: row;
-    min-height: 1500px;
+    justify-content: center;
     background-color: rgb(241, 242, 242);
     padding: 50px 25px 0 25px;
+    min-height: 1000px;
 }
 
 #search-bar {
@@ -124,16 +125,20 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    /* align-items: center; */
     min-width: 150px;
     min-height: 150px;
     border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
+    font-size: 15px;
+    padding: 0 0 0 25px;
 }
 
 .content-center {
     background-color: white;
-    width: 600px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2); 
     min-height: 500px;
+    min-width: 570px;
     margin: 0 25px 0 25px;
 }
 
@@ -145,4 +150,6 @@ h2 {
     min-width: 200px;
     height: 450px;
     background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2); 
 }
