@@ -107,8 +107,8 @@ router.post('/delete/:id(\\d+)',  requireAuth, csrfProtection, asyncHandler( asy
 }));
 
 
-  
-}))
+
+
 
 
 
