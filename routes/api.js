@@ -26,11 +26,15 @@ router.put('/edit/:id(\\d+)', requireAuth, answerValidators, asyncHandler( async
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
 
-    res.render('question', {
-      title: 'Edit',
-      errors,
-      csrfToken: req.csrfToken(),
-    });
+    console.log(errors)
+
+    res.json({errors: errors})
+
+    // res.render('question', {
+    //   title: 'Edit',
+    //   errors,
+    //   csrfToken: req.csrfToken(),
+    // });
   }
 }))
 

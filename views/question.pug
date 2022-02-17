@@ -46,7 +46,7 @@ block content
                     li(class='answer')
                         div(class='answer-card')
                             p= answer.userName
-                            p= answer.content
+                            p(id=`contentDisplay-${answer.id}`)= answer.content
                             div(class='q-bottom')
 
                             if answer.userId === locals.user.dataValues.id
@@ -54,6 +54,7 @@ block content
                                     //- input(type='hidden' name='_csrf' id='answerCSRF' value=csrfToken)
                                     input(type='hidden' name='answerId' value=answer.id)
                                     input(type='hidden' name='questionId' value=question.id)
+                                    input(type='text' id='errorDisplay' hidden=true)
                                     label(for='content') Content
                                     textarea(name='content' value=answer.content)
                                     button(type='submit' id=`editAnswer-${answer.id}`) Edit
