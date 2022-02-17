@@ -19,62 +19,64 @@ block content
                         div(class='q-content')
                             p= question.content
                     div(class='q-bottom')
+                        div(class='qa-votes')
+                            form(action='/questionvotes' method='post')
+                                input(type='hidden' name='questionId' value=question.id)
+                                div
+                                    button(type='submit' class='btn-vote') &#8679
+                            form(action='/questionvotes/delete' method='post')
+                                input(type='hidden' name='questionId' value=question.id)
+                                div
+                                    button(type='submit' class='btn-vote') &#8681
                         if question.userId === locals.user.dataValues.id
                             form(action=`/questions/edit/${question.id}` method="post")
                                 input(type="hidden" name="_csrf" value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
                                 div
-                                    button(type='submit') Edit
+                                    button(type='submit' class='btn-grey' id='qa-detail-edit') Edit
                             form(action=`/questions/delete/${question.id}` method="post")
                                 input(type="hidden" name="_csrf" value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
                                 div
-                                    button(type='submit') Delete
-                        div(class='question-votes')
-                            form(action='/questionvotes' method='post')
-                                input(type='hidden' name='questionId' value=question.id)
-                                div
-                                    button(type='submit' class='btn-upvote') Upvote
-                            form(action='/questionvotes/delete' method='post')
-                                input(type='hidden' name='questionId' value=question.id)
-                                div
-                                    button(type='submit' class='btn-upvote') Upvote
+                                    button(type='submit' class='btn-grey-l') Delete
+                        
 
                     div(class="answer-zone")
-                        h2 Answers
+                        h2 Answers:
                         form(action='/answers/new' method='post')
                             input(type='hidden' name='_csrf' value=csrfToken)
                             input(type='hidden' name='questionId' value=question.id)
-                            input(type='text' name='content' placeholder='have an answer?')
+                            input(type='text' name='content' placeholder='Have an answer?')
                             div
                                 button(type='submit' class='btn-red') Submit
-                        ul(class='answers-list')
+                        ul(class='answer-list')
                             for answer in question.Answers
                                 li(class='answer')
                                     div(class='answer-card')
                                         p= answer.userName
                                         p= answer.content
-                                        div(class='q-bottom')
+                                        div(class='qa-votes')
+                                            if answer.userId === locals.user.dataValues.id
+                                                div(class='a-votes')
+                                                    form(action='/answervotes' method='post')
+                                                        input(type='hidden' name='_csrf' value=csrfToken)
+                                                        input(type='hidden' name='questionId' value=answer.id)
+                                                        div
+                                                            button(type='submit' class='btn-vote') &#8679
+                                                    form(action='/answervotes/delete' method='post')
+                                                        input(type='hidden' name='_csrf' value=csrfToken)
+                                                        input(type='hidden' name='questionId' value=answer.id)
+                                                        div
+                                                            button(type='submit' class='btn-vote') &#8681
 
-                                        if answer.userId === locals.user.dataValues.id
-                                            form(action=`/answers/edit/${answer.id}` method='post')
-                                                input(type='hidden' name='_csrf' value=csrfToken)
-                                                input(type='hidden' name='questionId' value=answer.id)
-                                                div
-                                                    button(type='submit') Edit
-                                            form(action=`/answers/delete/${answer.id}` method='post')
-                                                input(type='hidden' name='_csrf' value=csrfToken)
-                                                input(type='hidden' name='questionId' value=answer.id)
-                                                div    
-                                                    button(type='submit') Delete
-                                        div(class='answer-votes')
-                                            form(action='/answervotes' method='post')
-                                            input(type='hidden' name='_csrf' value=csrfToken)
-                                            input(type='hidden' name='questionId' value=answer.id)
-                                            div
-                                                button(type='submit' class='btn-upvote') Upvote
-                                            form(action='/answervotes/delete' method='post')
-                                            input(type='hidden' name='_csrf' value=csrfToken)
-                                            input(type='hidden' name='questionId' value=answer.id)
-                                            div
-                                                button(type='submit' class='btn-downvote') Downvote
+                                                form(action=`/answers/edit/${answer.id}` method='post')
+                                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                                    input(type='hidden' name='questionId' value=answer.id)
+                                                    div
+                                                        button(type='submit' class='btn-grey' id='qa-detail-edit') Edit
+                                                form(action=`/answers/delete/${answer.id}` method='post')
+                                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                                    input(type='hidden' name='questionId' value=answer.id)
+                                                    div    
+                                                        button(type='submit' class='btn-grey-l') Delete
+                                            

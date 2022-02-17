@@ -235,28 +235,3 @@ h2 {
 .btn-add-tag:hover {
     background-color: rgb(225, 225, 225);
 }
-
-.btn-upvote {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    border-color: transparent;
-    border-radius: 25px;
-    min-width: 75px;
-    height: 25px;
-    padding: 0 15px 0 15px;
-}
-
-.btn-downvote {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    border-color: transparent;
-    border-radius: 25px;
-    min-width: 75px;
-    height: 25px;
-    padding: 0 15px 0 15px;
-}
-
-.btn-downvote:hover,
-.btn-upvote:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-}
