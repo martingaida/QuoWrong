@@ -32,6 +32,7 @@ const restoreUser = async (req, res, next) => {
       if (user) {
         res.locals.authenticated = true;
         res.locals.user = user;
+
         next();
       }
     } catch (err) {
