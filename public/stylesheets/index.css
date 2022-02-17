@@ -14,6 +14,10 @@ h2 {
     font-size: 14px;
 }
 
+#btn-grey-a:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
 .btn-grey {
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
@@ -21,6 +25,10 @@ h2 {
     border-radius: 25px;
     width: 75px;
     height: 25px;
+}
+
+.btn-grey:hover {
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .error-messages {
@@ -41,14 +49,6 @@ h2 {
 .error-messages p {
     color: rgba(0, 0, 0, 0.4);
     margin: 0 0 15px 0;
-}
-
-#btn-grey-a:hover {
-    color: rgba(0, 0, 0, 0.8);
-}
-
-.btn-grey:hover {
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .btn-beige {
@@ -132,7 +132,7 @@ h2 {
     /* background-color: red; */
     padding: 50px 0 0 0;
     width: 1000px;
-    min-height: 1000px;
+    min-height: 1500px;
 }
 
 #search-bar {
@@ -156,10 +156,7 @@ h2 {
 }
 
 .content-center {
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.2); 
-    min-height: 500px;
+    min-height: 1000px;
     min-width: 570px;
     margin: 0 25px 0 25px;
 }
@@ -167,11 +164,93 @@ h2 {
 .content-right {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     min-width: 200px;
     height: 450px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2); 
+}
+
+.content-right h3 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.q-card {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+}
+
+.q-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.q-card-top {
+    padding: 35px 20px 20px 20px;
+}
+
+.q-content {
+    line-height: 25px;
+    overflow: hidden;
+    display: -webkit-box; 
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 100px;
+}
+
+.q-img {
+    height: 350px;
+    width: 100%;
+    background-color: rgb(106, 176, 241);
+}
+
+.question-votes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 125px 0 125px;
+}
+
+.btn-add-tag {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(235, 235, 235);
+}
+
+.btn-add-tag:hover {
+    background-color: rgb(225, 225, 225);
+}
+
+.btn-upvote {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-color: transparent;
+    border-radius: 25px;
+    min-width: 75px;
+    height: 25px;
+    padding: 0 15px 0 15px;
+}
+
+.btn-downvote {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-color: transparent;
+    border-radius: 25px;
+    min-width: 75px;
+    height: 25px;
+    padding: 0 15px 0 15px;
+}
+
+.btn-downvote:hover,
+.btn-upvote:hover {
+    background-color: rgba(0, 0, 0, 0.6);
 }

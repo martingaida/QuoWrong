@@ -13,7 +13,7 @@ block content
       form(action='/questions/new' method='get')
         button(type='submit' class='btn-red') Add Question
       form(action='/search' method='post')
-        input(type='search' name='search' id='search-bar' placeholder='SEARCH')
+        input(type='search' name='search' id='search-bar' placeholder='Search QuoWrong')
       if locals.authenticated
         form( action='/users/logout' method='post')
           button(type='submit' class='btn-beige') Logout
@@ -25,6 +25,9 @@ block content
   div(class='content')
     div(class='main-container')
       div(class='content-left')
+        div(class='add-tag')
+          form(action='/tags' method='post')
+            button(type='submit' class='btn-add-tag') + Add Tag
         if tags
           for tag in tags
             div(class='tag-card')
@@ -34,6 +37,32 @@ block content
         p Bagels
         p FloridaMan
       div(class='content-center')
+        div(class='q-card')
+          div(class='q-card-top')
+            h3 Why is the img element not working?
+            div(class='q-content')
+              p So, I used the correct syntax (I think) but for some reason, even-though I specified correct path to the resource and used the correct image format it's still not showing up...
+          div(class='q-img')
+            img(src='../public/assets/img/extrapolate.png', alt='')
+          div(class='q-bottom')
+            div(class='question-votes')
+              form(action='/questionvotes' method='post')
+                button(type='submit' class='btn-upvote') Upvote
+              form(action='/questionvotes/delete' method='post')
+                button(type='submit' class='btn-downvote') Downvote
+        div(class='q-card')
+          div(class='q-card-top')
+            h3 I'm really curious why it's not working..?
+            div(class='q-content')
+              p I feel like no mattter what I try, src, url, different image formats, jpg, png, nothing seems to be working. Is it me? Is it the computer? Is this whole thing a conspiracy?
+          div(class='q-img')
+            img(src='../public/assets/img/extrapolate.png', alt='')
+          div(class='q-bottom')
+            div(class='question-votes')
+              form(action='/questionvotes' method='post')
+                button(type='submit' class='btn-upvote') Upvote
+              form(action='/questionvotes/delete' method='post')
+                button(type='submit' class='btn-downvote') Downvote
         if questions
           div
             for question in questions
@@ -44,3 +73,4 @@ block content
                   for Answer in question.Answers
                     p= Answer.content
       div(class='content-right')
+        h3 Ads?
