@@ -22,10 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     }
     
     Question.hasMany(models.Answer, {
-      foreignKey: 'questionId'
+      foreignKey: 'questionId',
+      onDelete: 'cascade', 
+      hooks: true
     });
     Question.hasMany(models.QuestionVote, {
-      foreignKey: 'questionId'
+      foreignKey: 'questionId',
+      onDelete: 'cascade', 
+      hooks: true
     });
     Question.belongsTo(models.User, {
       foreignKey: 'userId'
