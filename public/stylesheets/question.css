@@ -77,3 +77,28 @@
     flex-direction: row;
     justify-content: flex-end;
 }
+
+.q-card-detail {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 5px;
+    width: 600px;
+    padding: 25px;
+}
+
+.main-container-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* background-color: rgb(241, 242, 242); */
+    /* background-color: red; */
+    width: 1000px;
+    min-height: 1500px;
+    padding: 100px 0 0 0;
+}
+
+.q-card-detail h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
