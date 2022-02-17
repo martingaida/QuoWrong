@@ -8,11 +8,13 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-
-    div(id='question-page')
-        div( id='question-card')
-            h2= question.headline
-            p= question.content
+    div(class='q-card')
+        div(class='q-card-top')
+            h3= question.headline
+            h3 Test
+            div(class='q-content')
+                p= question.content
+        div(class='q-bottom')
             if question.userId === locals.user.dataValues.id
                 form(action=`/questions/edit/${question.id}` method="post")
                     input(type="hidden" name="_csrf" value=csrfToken)
@@ -24,17 +26,46 @@ block content
                 form(action=`/questions/delete/${question.id}` method="post")
                     input(type="hidden" name="_csrf" value=csrfToken)
                     button delete
-        form(action='/answers/new' method='post')
-            input(type='hidden' name='_csrf' value=csrfToken)
-            input(type='hidden' name='questionId' value=question.id)
-            input(type='text' name='content' placeholder='have an answer?')
-            div
-                button(type='submit' class='btn-red') Submit
+            div(class='question-votes')
+            form(action='/questionvotes' method='post')
+                button(type='submit' class='btn-upvote') Upvote
+            form(action='/questionvotes/delete' method='post')
+                button(type='submit' class='btn-downvote') Downvote
+            form(action='/answers/new' method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                input(type='hidden' name='questionId' value=question.id)
+                input(type='text' name='content' placeholder='have an answer?')
+                div
+                    button(type='submit' class='btn-red') Submit
         div(class="answer-zone")
             h2 Answers
             ul(class='answers-list')
-                for Answer in question.Answers
+                for answer in question.Answers
                     li(class='answer')
                         div(class='answer-card')
-                            p= Answer.userName
-                            p= Answer.content
+                            p= answer.userName
+                            p= answer.content
+                            div(class='q-bottom')
+
+                            if answer.userId === locals.user.dataValues.id
+                                form(action=`/answer/edit/${answer.id}` method='post')
+                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                    input(type='hidden' name='questionId' value=question.id)
+                                    label(for='content') Content 
+                                    textarea(name='content' value=answer.content)
+                                    button(type='submit') Edit
+                                form(action=`/answers/delete/${answer.id}` method='post')
+                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                    button(type='submit') Delete
+
+                            div(class='question-votes')
+                            form(action='/questionvotes' method='post')
+                                button(type='submit' class='btn-upvote') Upvote
+                            form(action='/questionvotes/delete' method='post')
+                                button(type='submit' class='btn-downvote') Downvote
+                            form(action='/answers/new' method='post')
+                                input(type='hidden' name='_csrf' value=csrfToken)
+                                input(type='hidden' name='questionId' value=question.id)
+                                input(type='text' name='content' placeholder='have an answer?')
+                                div
+                                    button(type='submit' class='btn-red') Submit

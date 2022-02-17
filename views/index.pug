@@ -64,8 +64,8 @@ block content
               form(action='/questionvotes/delete' method='post')
                 button(type='submit' class='btn-downvote') Downvote
         if questions
-          div(class='q-card')
-            for question in questions
+          for question in questions
+            div(class='q-card')
               div(class='q-card-top')
                 h3: a(href=`/questions/${question.id}`)= question.headline
                 div(class='q-content')
@@ -76,5 +76,27 @@ block content
                     button(type='submit' class='btn-upvote') Upvote
                   form(action='/questionvotes/delete' method='post')
                     button(type='submit' class='btn-downvote') Downvote
+                if question.userId === locals.user.dataValues.id
+                  form(action=`/questions/edit/${question.id}` method="post")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    label(for='headline') Headline
+                    input(type='text' name='headline' value=question.headline)
+                    label(for='content') Content 
+                    textarea(name='content')
+                    button(type='submit') edit
+                  form(action=`/questions/delete/${question.id}` method="post")
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    button delete
+                  div(class='question-votes')
+                    form(action='/questionvotes' method='post')
+                      button(type='submit' class='btn-upvote') Upvote
+                    form(action='/questionvotes/delete' method='post')
+                      button(type='submit' class='btn-downvote') Downvote
+                    form(action='/answers/new' method='post')
+                      input(type='hidden' name='_csrf' value=csrfToken)
+                      input(type='hidden' name='questionId' value=question.id)
+                      input(type='text' name='content' placeholder='have an answer?')
+                      div
+                        button(type='submit' class='btn-red') Submit
       div(class='content-right')
         h3 Ads?

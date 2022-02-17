@@ -190,6 +190,12 @@ h2 {
     font-weight: bold;
 }
 
+.q-card a {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .q-card-top {
     padding: 35px 20px 20px 20px;
 }
