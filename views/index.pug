@@ -7,39 +7,40 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  div(class='nav-bar')
-    h1: a(href='/') Quora
-    form(action='/questions/new' method='get')
-      button(type='submit' class='btn-red') Add Question
-    form(action='/search' method='post')
-      input(type='search' name='search' id='search-bar' placeholder='SEARCH')
-    if locals.authenticated
-      form( action='/users/logout' method='post')
-        button(type='submit' class='btn-beige') Logout
-    else
-      span()
-        a( href='/users/login') Login
-        a( href='/users/sign-up') Sign Up
+  div(class='nav-container')
+    div(class='nav-bar')
+      h1: a(href='/') Quora
+      form(action='/questions/new' method='get')
+        button(type='submit' class='btn-red') Add Question
+      form(action='/search' method='post')
+        input(type='search' name='search' id='search-bar' placeholder='SEARCH')
+      if locals.authenticated
+        form( action='/users/logout' method='post')
+          button(type='submit' class='btn-beige') Logout
+      else
+        span()
+          a( href='/users/login') Login
+          a( href='/users/sign-up') Sign Up
   h1= title
-
-  div(class='main-container')
-    div(class='content-left')
-      if tags
-        for tag in tags
-          div(class='tag-card')
-            p= tag.name
-      p Ghostbusters
-      p Scooby-Doo
-      p Bagels
-      p FloridaMan
-    div(class='content-center')
-      if questions
-        div
-          for question in questions
-            div(class='question-card')
-              h3: a(href=`/questions/${question.id}`)= question.headline
-              p= question.content
-              div
-                for Answer in question.Answers
-                  p= Answer.content
-    div(class='content-right')
+  div(class='content')
+    div(class='main-container')
+      div(class='content-left')
+        if tags
+          for tag in tags
+            div(class='tag-card')
+              p= tag.name
+        p Ghostbusters
+        p Scooby-Doo
+        p Bagels
+        p FloridaMan
+      div(class='content-center')
+        if questions
+          div
+            for question in questions
+              div(class='question-card')
+                h3: a(href=`/questions/${question.id}`)= question.headline
+                p= question.content
+                div
+                  for Answer in question.Answers
+                    p= Answer.content
+      div(class='content-right')
