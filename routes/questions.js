@@ -65,5 +65,45 @@ router.post('/new', requireAuth, csrfProtection, questionValidators, asyncHandle
 }));
 
 
+router.post('/edit/:id(\\d+)', requireAuth, csrfProtection, questionValidators, asyncHandler( async (req, res, next) => {
+
+  const { headline, content } = req.body
+  const validatorErrors = validationResult(req);
+
+  console.log(validatorErrors)
+
+  if (validatorErrors.isEmpty()) {
+
+    const question = await Question.findByPk(req.params.id);
+    question.headline = headline;
+    question.content = content;
+    await question.save();
+
+    res.redirect(`/questions/${req.params.id}`)
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+
+    res.render('question', {
+      title: 'Edit',
+      user,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
+  }
+
+}))
+
+router.post('/delete/:id(\\d+)',  requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
+
+  const id  = req.params.id;
+
+  const question = await Question.findByPk(id, { include: ['Answers'] });
+
+  await question.destroy();
+
+  res.redirect('/questions');
+}));
+
+
 
 module.exports = router;
