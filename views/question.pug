@@ -18,7 +18,7 @@ block content
                     input(type="hidden" name="_csrf" value=csrfToken)
                     label(for='headline') Headline
                     input(type='text' name='headline' value=question.headline)
-                    label(for='content') Content 
+                    label(for='content') Content
                     textarea(name='content')
                     button(type='submit') edit
                 form(action=`/questions/delete/${question.id}` method="post")
