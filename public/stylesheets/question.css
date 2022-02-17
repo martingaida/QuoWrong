@@ -25,3 +25,19 @@
     font-size: 40px;
     margin: 60px 0 10px 0;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;
+    align-items: center; */
+    /* background-color: rgb(241, 242, 242); */
+    /* background-color: red; */
+    padding: 50px 0 0 0;
+    width: 1000px;
+    min-height: 1500px;
+}
+
+.q-form {
+
+}

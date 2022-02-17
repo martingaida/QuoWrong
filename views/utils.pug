@@ -21,3 +21,19 @@ mixin demoUser()
       input(type='hidden' name='userName' value='demo')
       input(type='hidden' name='password' value='Password1@')
       button(type='submit' class='btn-grey') Demo
+
+mixin navbar()
+  div(class='nav-container')
+    div(class='nav-bar')
+      h1: a(href='/') QuoWrong
+      form(action='/questions/new' method='get')
+        button(type='submit' class='btn-red') Add Question
+      form(action='/search' method='post')
+        input(type='search' name='search' id='search-bar' placeholder='Search QuoWrong')
+      if locals.authenticated
+        form( action='/users/logout' method='post')
+          button(type='submit' class='btn-beige') Logout
+      else
+        span()
+          a( href='/users/login') Login
+          a( href='/users/sign-up') Sign Up
