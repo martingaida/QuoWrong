@@ -34,10 +34,46 @@
     background-color: rgb(241, 242, 242);
     /* background-color: red; */
     padding: 50px 0 0 0;
-    width: 1000px;
-    min-height: 1500px;
+    width: 100vw;
+    height: 100vh;
 }
 
 .q-form {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 500px;
+    min-height: 200px;
+    margin: 0 0 10vh 0;
+    padding: 60px 75px 60px 75px;
+}
 
+.q-form input,
+.q-form textarea {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 10px 0 25px 0;
+}
+
+.q-form label {
+    font-size: 20px;
+}
+
+.q-form h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.q-form-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
