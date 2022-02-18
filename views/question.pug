@@ -59,24 +59,12 @@ block content
                                         p(id=`contentDisplay-${answer.id}`)= answer.content
                                         div(class='qa-votes')
                                             if answer.userId === locals.user.dataValues.id
-                                                div(class='a-votes')
-                                                    form(action='/answervotes' method='post')
-                                                        input(type='hidden' name='_csrf' value=csrfToken)
-                                                        input(type='hidden' name='questionId' value=answer.id)
-                                                        div
-                                                            button(type='submit' class='btn-vote') &#8679
-                                                    form(action='/answervotes/delete' method='post')
-                                                        input(type='hidden' name='_csrf' value=csrfToken)
-                                                        input(type='hidden' name='questionId' value=answer.id)
-                                                        div
-                                                            button(type='submit' class='btn-vote') &#8681
-
                                                 form(action=`/api/edit/${answer.id}` method='post' id='edit-form')
                                                     input(type='hidden' name='answerId' value=answer.id)
                                                     input(type='hidden' name='questionId' value=question.id)
                                                     input(type='text' id='errorDisplay' hidden=true)
-                                                    label(for='content') Content
-                                                    textarea(name='content' value=answer.content)
+                                                    label(for='content')
+                                                    textarea(name='content')= answer.content
                                                     button(type='submit' id=`editAnswer-${answer.id}` class='btn-grey') Edit
                                                 form(action=`/api/delete/${answer.id}` method='post' id='delete-form')
                                                     input(type='hidden' name='answerId' value=answer.id)
