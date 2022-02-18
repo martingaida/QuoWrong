@@ -75,8 +75,8 @@ block content
                                                     label(for='content') Content
                                                     textarea(name='content' value=answer.content)
                                                     button(type='submit' id=`editAnswer-${answer.id}` class='btn-grey') Edit
-                                                form(action=`/api/delete/${answer.id}` method='post')
-                                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                                form(action=`/api/delete/${answer.id}` method='post' id='delete-form')
+                                                    input(type='hidden' name='answerId' value=answer.id)
                                                     input(type='hidden' name='questionId' value=answer.id)
                                                     div
-                                                        button(type='submit' class='btn-grey-l') Delete
+                                                        button(type='submit' class='btn-grey-l' id='delete-btn') Delete

@@ -36,6 +36,18 @@ router.put('/edit/:id(\\d+)', requireAuth, answerValidators, asyncHandler( async
     //   csrfToken: req.csrfToken(),
     // });
   }
-}))
+}));
+
+router.delete('/delete/:id(\\d+)', requireAuth, asyncHandler( async (req, res, next) => {
+
+  const { id } = req.params;
+
+  console.log(req.params)
+
+  const answer = await Answer.findByPk(id)
+  await answer.destroy();
+
+  res.json({message: 'Success'})
+}));
 
 module.exports = router;
