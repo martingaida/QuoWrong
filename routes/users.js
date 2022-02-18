@@ -63,6 +63,10 @@ router.post('/sign-up', csrfProtection, userValidators, asyncHandler(async (req,
 
 router.get('/login', csrfProtection, (req, res, next) => {
 
+  if (res.locals.authenticated) {
+    res.redirect('/');
+  }
+
   res.render('login', {
     title: 'Log In!',
     csrfToken: req.csrfToken()
