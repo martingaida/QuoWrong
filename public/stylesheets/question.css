@@ -126,19 +126,31 @@
 }
 
 .q-bottom {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px 0 20px;
+    justify-content: flex-start;
+    align-items: center; 
+    
+    padding: 0 20px 0 20px; 
 }
 
-.qa-votes {
+
+
+
+.btn-bar {
+    box-sizing: border-box;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-flow: row nowrap;
+    font-size: 14px;
+    font-weight: 500;
     align-items: center;
+    background-color: transparent;
+    border: none;
 }
+
+
+
 
 .answer-zone {
     padding: 35px 20px 0 20px;

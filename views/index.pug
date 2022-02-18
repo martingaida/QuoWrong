@@ -33,17 +33,31 @@ block content
                 div(class='q-content')
                   p= question.content
               div(class='q-bottom')
-                div(class='qa-votes')
+                //- form(action=`/questions/${question.id}` method='get')
+                a(href=`/questions/${question.id}`)
+                  button(class='btn-bar')
+                    include svg/answer-pen.svg
+                    p Answer
+                    
+                div(class='btn-bar')
                   -var vote = 0;
                   for questionVote in question.QuestionVotes
                     if questionVote.upVote
                       -vote++;
                     if questionVote.upVote === 'false'
                       -vote--;
-                  form(action='/questionvotes' method='post')
-                    button(type='submit' class='btn-vote') &#8679
+                  div(class='btn-bar')
+                    form(action='/questionvotes' method='post')
+                      button(type='submit' class='btn-bar' id='btn-upvote')
+                        include svg/upvote.svg
                     p= vote
-                  form(action='/questionvotes/delete' method='post')
-                    button(type='submit' class='btn-vote') &#8681
+                    form(action='/questionvotes/delete' method='post')
+                      button(type='submit' class='btn-bar')
+                        include svg/downvote.svg
+                div
+                  -var comments = 0;
+                  button(name='questionComments' class='btn-bar')
+                    include svg/comment.svg
+                    p= comments
       div(class='content-right')
         h3 Ads?

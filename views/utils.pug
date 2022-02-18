@@ -26,7 +26,12 @@ mixin navbar()
   div(class='nav-container')
     div(class='nav-bar')
       h1: a(href='/') QuoWrong
-      form(action='/questions/new' method='get')
+
+      a(href='/')
+        button(style='border:none;background-color: transparent;') 
+          include svg/home.svg
+        div(style='border-bottom:2px solid rgb(209, 28, 22);;')
+      a(href='/questions/new')
         input(type='hidden' name='_csrf' value=csrfToken)
         button(type='submit' class='btn-red') Add Question
       form(action='/search' method='post')
