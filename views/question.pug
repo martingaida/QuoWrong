@@ -40,9 +40,8 @@ block content
                                 div
                                     button(type='submit' class='btn-grey-l') Delete
                         
-
                     div(class="answer-zone")
-                        h2 Answers
+                        h2 Answers:
                         form(action='/answers/new' method='post')
                             input(type='hidden' name='_csrf' value=csrfToken)
                             input(type='hidden' name='questionId' value=question.id)
