@@ -46,7 +46,7 @@ block content
                     input(type='hidden' name='userId' value=locals.user.dataValues.id)
                     input(type='hidden' name='upVote' value='true')
                     button(type='submit' class='btn-vote') &#8679
-                    p= vote
+                    p(id=`vote-count-${question.id}`)= vote
                   form(action='/questionVotes' method='post' id='vote-form')
                     input(type='hidden' name='_csrf' value=csrfToken)
                     input(type='hidden' name='questionId' value=question.id)
