@@ -40,10 +40,18 @@ block content
                       -vote++;
                     if questionVote.upVote === 'false'
                       -vote--;
-                  form(action='/questionvotes' method='post')
+                  form(action='/questionVotes' method='post' id='vote-form')
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    input(type='hidden' name='questionId' value=question.id)
+                    input(type='hidden' name='userId' value=locals.user.dataValues.id)
+                    input(type='hidden' name='upVote' value='true')
                     button(type='submit' class='btn-vote') &#8679
                     p= vote
-                  form(action='/questionvotes/delete' method='post')
+                  form(action='/questionVotes' method='post' id='vote-form')
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    input(type='hidden' name='questionId' value=question.id)
+                    input(type='hidden' name='userId' value=locals.user.dataValues.id)
+                    input(type='hidden' name='upVote' value='false')
                     button(type='submit' class='btn-vote') &#8681
       div(class='content-right')
         h3 Ads?
