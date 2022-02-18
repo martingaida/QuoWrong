@@ -31,7 +31,10 @@ block content
                         if question.userId === locals.user.dataValues.id
                             form(action=`/questions/edit/${question.id}` method="post")
                                 input(type="hidden" name="_csrf" value=csrfToken)
-                                input(type='hidden' name='questionId' value=question.id)
+                                label(for='headline') Headline
+                                input(type='text' name='headline' value=question.headline)
+                                label(for='content') Content
+                                textarea(name='content' )= question.content
                                 div
                                     button(type='submit' class='btn-grey' id='qa-detail-edit') Edit
                             form(action=`/questions/delete/${question.id}` method="post")
