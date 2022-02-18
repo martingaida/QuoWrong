@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
     const deleteForms = document.querySelectorAll('#delete-form')
 
+    const voteForms = document.querySelectorAll('#vote-form')
+
     editForms.forEach(form => {
         form.addEventListener('submit', async (e) => {
 
@@ -80,4 +82,49 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
     });
 
+    voteForms.forEach(form => {
+
+        form.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+            const formData = new FormData(form);
+            const questionId = formData.get('questionId');
+            const userId = formData.get('userId');
+            const upVote = formData.get('upVote');
+            
+            const res = await fetch(`/api/questionVotes/query/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    questionId,
+                    userId,
+                    upVote
+                })
+            });
+            const voteCount = await res.json()
+            console.log(voteCount)
+
+            let vote = 0;
+            for(let i = 0; i < voteCount.data.length; i++) {
+                
+                if (voteCount.data[i].upVote) {
+                    vote++;
+                } else {
+                    vote--;
+                }
+            }
+            // voteCount.data.forEach(vote => {
+            //     if (vote.upVote) {
+            //         vote+=1
+            //     } else {
+            //         vote-=1
+            //     }
+            // })
+            console.log(voteCount.data)
+            const voteCounter = document.querySelector(`#vote-count-${questionId}`)
+            voteCounter.textContent = vote.toString()
+        })
+    });
 })

@@ -20,14 +20,25 @@ block content
                             p= question.content
                     div(class='q-bottom')
                         div(class='qa-votes')
-                            form(action='/questionvotes' method='post')
+                            -var vote = 0;
+                            for questionVote in question.QuestionVotes
+                                if questionVote.upVote
+                                    -vote++;
+                                if questionVote.upVote === 'false'
+                                    -vote--;
+                            form(action='/questionVotes' method='post' id='vote-form')
+                                input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
-                                div
-                                    button(type='submit' class='btn-vote') &#8679
-                            form(action='/questionvotes/delete' method='post')
+                                input(type='hidden' name='userId' value=locals.user.dataValues.id)
+                                input(type='hidden' name='upVote' value='true')
+                                button(type='submit' class='btn-vote') &#8679
+                                p(id=`vote-count-${question.id}`)= vote
+                            form(action='/questionVotes' method='post' id='vote-form')
+                                input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
-                                div
-                                    button(type='submit' class='btn-vote') &#8681
+                                input(type='hidden' name='userId' value=locals.user.dataValues.id)
+                                input(type='hidden' name='upVote' value='false')
+                                button(type='submit' class='btn-vote') &#8681
                         if question.userId === locals.user.dataValues.id
                             form(action=`/questions/edit/${question.id}` method="post")
                                 input(type="hidden" name="_csrf" value=csrfToken)
