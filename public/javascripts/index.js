@@ -105,21 +105,26 @@ window.addEventListener('DOMContentLoaded', (event)=>{
             });
             const voteCount = await res.json()
             console.log(voteCount)
+
+            let vote = 0;
+            for(let i = 0; i < voteCount.data.length; i++) {
+                
+                if (voteCount.data[i].upVote) {
+                    vote++;
+                } else {
+                    vote--;
+                }
+            }
+            // voteCount.data.forEach(vote => {
+            //     if (vote.upVote) {
+            //         vote+=1
+            //     } else {
+            //         vote-=1
+            //     }
+            // })
+            console.log(voteCount.data)
+            const voteCounter = document.querySelector(`#vote-count-${questionId}`)
+            voteCounter.textContent = vote.toString()
         })
     });
-
-
-    /*
-    form(action='/questionvotes' method='post' id='vote-form')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        input(type='hidden' name='questionId' value=question.id)
-        input(type='hidden' name='upVote' value='true')
-        button(type='submit' class='btn-vote') &#8679
-        p= vote
-    form(action='/questionvotes/delete' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        input(type='hidden' name='questionId' value=question.id)
-        input(type='hidden' name='upVote' value='false')
-        button(type='submit' class='btn-vote') &#8681
-    */
 })
