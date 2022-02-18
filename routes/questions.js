@@ -13,8 +13,7 @@ router.get('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next)
     include: [ 'Answers', 'QuestionVotes', 'Tags', 'User'],
     order: [['createdAt']]
   });
-
-
+  
   res.render('index', { title: 'Ask a question', questions, csrfToken:req.csrfToken()});
 }));
 

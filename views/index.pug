@@ -34,10 +34,19 @@ block content
                   p= question.content
               div(class='q-bottom')
                 div(class='qa-votes')
+                  -var upVote = 0;
+                  -var downVote = 0;
+                  for questionVote in question.QuestionVotes
+                    if questionVote.upVote
+                      -upVote++;
+                    if questionVote.upVote === 'false'
+                      -downVote++;
                   form(action='/questionvotes' method='post')
                     button(type='submit' class='btn-vote') &#8679
+                    p= upVote
                   form(action='/questionvotes/delete' method='post')
                     button(type='submit' class='btn-vote') &#8681
+                    p= downVote
                 if question.userId === locals.user.dataValues.id
                   form(action=`/questions/edit/${question.id}` method="post")
                     input(type="hidden" name="_csrf" value=csrfToken)
