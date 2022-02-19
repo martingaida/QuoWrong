@@ -6,10 +6,13 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
     const voteForms = document.querySelectorAll('#vote-form')
 
+
     const editQuestionAppear = document.querySelector('#question-edit-appear')
     const editQuestionDissapear = document.querySelector('#question-edit-disapear')
+    const editQuestionSubmit = document.querySelector('#qa-detail-edit')
 
-    const editQuestionSubmit = document.querySelector('qa-detail-edit')
+
+
 
     editForms.forEach(form => {
         form.addEventListener('submit', async (e) => {
@@ -134,24 +137,26 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
     });
 
+    if(editQuestionAppear) {
+        editQuestionAppear.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
+                field.hidden = false;
+            })
+        })
 
-    editQuestionAppear.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
-            field.hidden = false;
+        editQuestionDissapear.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
+                field.hidden = true;
+            })
         })
-    })
-    editQuestionDissapear.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
-            field.hidden = true;
-        })
-    })
 
-    editQuestionSubmit.addEventListener('submit', (e) => {
-        document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
-            field.hidden = true;
-        })
-    } )
+        editQuestionSubmit.addEventListener('submit', (e) => {
+            document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
+                field.hidden = true;
+            })
+        } )
+    }
 
 })

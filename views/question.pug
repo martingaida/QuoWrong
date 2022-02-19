@@ -26,19 +26,22 @@ block content
                                     -vote++;
                                 if questionVote.upVote === 'false'
                                     -vote--;
+                        div(class='btn-bar')            
                             form(action='/questionVotes' method='post' id='vote-form')
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
                                 input(type='hidden' name='userId' value=locals.user.dataValues.id)
                                 input(type='hidden' name='upVote' value='true')
-                                button(type='submit' class='btn-vote') &#8679
+                                button(type='submit' class='btn-bar')
+                                    include svg/upvote.svg
                             p(id=`vote-count-${question.id}`)= vote
                             form(action='/questionVotes' method='post' id='vote-form')
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
                                 input(type='hidden' name='userId' value=locals.user.dataValues.id)
                                 input(type='hidden' name='upVote' value='false')
-                                button(type='submit' class='btn-vote') &#8681
+                                button(type='submit' class='btn-bar')
+                                    include svg/downvote.svg
                         if question.userId === locals.user.dataValues.id
                             div(class='q-form-edit')
                                 form(action=`/questions/edit/${question.id}` method='post')
