@@ -4,9 +4,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
     return queryInterface.bulkInsert('Questions', [
-      {userId:'1', headline:'Does science work?', content:`Pour-over tattooed poutine, pinterest banjo hexagon pug jean shorts typewriter tousled. Wayfarers polaroid single-origin coffee echo park poke kitsch shaman live-edge. Twee artisan unicorn semiotics fashion axe gentrify shabby chic tattooed portland four dollar toast vape. Man braid banh mi gentrify aesthetic schlitz. Vexillologist pinterest intelligentsia, chicharrones blog next level jean shorts jianbing DIY keffiyeh readymade flexitarian bitters. Synth lomo succulents skateboard. Normcore brunch adaptogen asymmetrical tbh iPhone woke tattooed flannel viral.`, createdAt: new Date(), updatedAt: new Date()},
-      {userId:'1', headline: 'I was spanking my 14-year-old son for coming home late and not doing his chores. He then punched me in the face and locked himself in his room. What do I do?', content:`I'm baby echo park taxidermy street art blog gentrify master cleanse. Wolf meggings mustache hashtag slow-carb, chillwave keffiyeh. Typewriter try-hard literally blue bottle knausgaard bicycle rights helvetica vape. Four dollar toast sartorial vegan VHS, salvia ennui venmo beard cloud bread coloring book etsy irony tumblr letterpress shabby chic`, createdAt: new Date(), updatedAt: new Date()},
-      {userId:'1', headline:'Venmo craft beer vegan tacos?', content:`Mustache cloud bread tumblr taxidermy coloring book ugh. Viral offal gastropub freegan yr cardigan. Vinyl waistcoat selvage, locavore marfa butcher raw denim craft beer tofu drinking vinegar biodiesel farm-to-table letterpress. Farm-to-table yr salvia subway tile tousled enamel pin waistcoat forage iceland celiac umami selvage.`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'1', headline:'Is cereal a soup?', content:`Asking for a friend...`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'2', headline: 'I was spanking my 14-year-old son for coming home late and not doing his chores. He then punched me in the face and locked himself in his room. What do I do?', content:'', createdAt: new Date(), updatedAt: new Date()},
+      {userId:'3', headline:'Congrats?', content:`People write congrats because they can spell congrajlashins. Change my mind.`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'5', headline:`Did Biden shoot himself in the foot in hopes of getting discharged from presidency?`, content:`I heard on the news that he shot himself in the foot behind the Resolute desk in the Oval Office on Wednesday morning in an effort to obtain a medical leave...`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'1', headline:`What's the recipe for a grilled cheese sandwich?`, content:`I'm not much of a cook`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'4', headline:`Why would a bottle of hand sanitiser have an expiry date of 12 months after purchase when it’s 70% ethanol?`, content:`What expires exactly?`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'1', headline:`Are zebras black with white stripes or white with black stripes?`, content:`What expires exactly?`, createdAt: new Date(), updatedAt: new Date()},
     ], {});
 
   },
