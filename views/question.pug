@@ -32,7 +32,7 @@ block content
                                 input(type='hidden' name='userId' value=locals.user.dataValues.id)
                                 input(type='hidden' name='upVote' value='true')
                                 button(type='submit' class='btn-vote') &#8679
-                                p(id=`vote-count-${question.id}`)= vote
+                            p(id=`vote-count-${question.id}`)= vote
                             form(action='/questionVotes' method='post' id='vote-form')
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
@@ -40,19 +40,20 @@ block content
                                 input(type='hidden' name='upVote' value='false')
                                 button(type='submit' class='btn-vote') &#8681
                         if question.userId === locals.user.dataValues.id
-                            form(action=`/questions/edit/${question.id}` method="post")
-                                input(type="hidden" name="_csrf" value=csrfToken)
-                                label(for='headline') Headline
-                                input(type='text' name='headline' value=question.headline)
-                                label(for='content') Content
-                                textarea(name='content' )= question.content
+                            form(action=`/questions/edit/${question.id}` method='post')
+                                input(type="hidden" name="_csrf" value=csrfToken )
+                                label(for='headline' hidden='true' class='edit-form-hidden-fields') Headline
+                                input(type='text' name='headline' value=question.headline hidden='true' class='edit-form-hidden-fields')
+                                label(for='content' hidden='true' class='edit-form-hidden-fields') Content
+                                textarea(name='content' hidden='True' class='edit-form-hidden-fields')= question.content
                                 div
-                                    button(type='submit' class='btn-grey' id='qa-detail-edit') Edit
+                                    button(type='submit' class='btn-grey edit-form-hidden-fields' id='qa-detail-edit' hidden='True') Edit
                             form(action=`/questions/delete/${question.id}` method="post")
                                 input(type="hidden" name="_csrf" value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
                                 div
                                     button(type='submit' class='btn-grey-l') Delete
+                            button(class='btn-grey-l' id='question-edit-appear') Edit
 
                     div(class="answer-zone")
                         h2 Answers

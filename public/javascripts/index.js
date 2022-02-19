@@ -6,6 +6,10 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
     const voteForms = document.querySelectorAll('#vote-form')
 
+    const editQuestionAppear = document.querySelector('#question-edit-appear')
+
+    const editQuestionSubmit = document.querySelector('qa-detail-edit')
+
     editForms.forEach(form => {
         form.addEventListener('submit', async (e) => {
 
@@ -91,7 +95,7 @@ window.addEventListener('DOMContentLoaded', (event)=>{
             const questionId = formData.get('questionId');
             const userId = formData.get('userId');
             const upVote = formData.get('upVote');
-            
+
             const res = await fetch(`/api/questionVotes/query/`, {
                 method: 'POST',
                 headers: {
@@ -108,7 +112,7 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
             let vote = 0;
             for(let i = 0; i < voteCount.data.length; i++) {
-                
+
                 if (voteCount.data[i].upVote) {
                     vote++;
                 } else {
@@ -126,5 +130,21 @@ window.addEventListener('DOMContentLoaded', (event)=>{
             const voteCounter = document.querySelector(`#vote-count-${questionId}`)
             voteCounter.textContent = vote.toString()
         })
+
     });
+
+
+    editQuestionAppear.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
+            field.hidden = false;
+        })
+    })
+
+    editQuestionSubmit.addEventListener('submit', (e) => {
+        document.querySelectorAll('input.edit-form-hidden-fields, label.edit-form-hidden-fields, button.edit-form-hidden-fields, textarea.edit-form-hidden-fields').forEach(field => {
+            field.hidden = true;
+        })
+    } )
+
 })
