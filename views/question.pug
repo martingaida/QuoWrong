@@ -7,13 +7,14 @@ append head
   link(rel="stylesheet" href="/stylesheets/question.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/answer-users.js" type="module" defer)
 
 block content
     +navbar()
     div(class='content')
         div(class='main-container-detail')
             div(class='content-center')
-                div(class='q-card-detail')
+                div(class='q-card-detail' id=`question-${question.id}`)
                     div(class='q-card-top')
                         h3= question.headline
                         div(class='q-content')
@@ -22,9 +23,9 @@ block content
                         div(class='qa-votes')
                             -var vote = 0;
                             for questionVote in question.QuestionVotes
-                                if questionVote.upVote
+                                if questionVote.dataValues.upVote
                                     -vote++;
-                                if questionVote.upVote === 'false'
+                                if questionVote.dataValues.upVote === false
                                     -vote--;
                         div(class='btn-bar')
                             form(action='/questionVotes' method='post' id='vote-form')
@@ -57,33 +58,34 @@ block content
                                 input(type="hidden" name="_csrf" value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
                                 div
-                                    button(type='submit' class='btn-grey-l') Delete
-                            button(class='btn-grey-l' id='question-edit-appear') Edit
+                                    button(type='submit' class='btn-grey') Delete
+                            button(class='btn-grey' id='question-edit-appear') Edit
 
                     div(class="answer-zone")
                         h2 Answers
                         form(action='/answers/new' method='post')
                             input(type='hidden' name='_csrf' value=csrfToken)
                             input(type='hidden' name='questionId' value=question.id)
-                            input(type='text' name='content' placeholder='Have an answer?')
+                            textarea(name='content' placeholder='Have an answer?' rows='3' cols='50' style='resize:none;')
                             div
                                 button(type='submit' class='btn-red') Submit
                         ul(class='answer-list')
                             for answer in question.Answers
                                 li(class='answer')
                                     div(class='answer-card')
+                                        p(class='username-box' id=`usrans-${answer.userId}`)
                                         p(id=`contentDisplay-${answer.id}`)= answer.content
                                         div(class='qa-votes')
                                             if answer.userId === locals.user.dataValues.id
-                                                form(action=`/api/edit/${answer.id}` method='post' id='edit-form')
-                                                    input(type='hidden' name='answerId' value=answer.id)
-                                                    input(type='hidden' name='questionId' value=question.id)
-                                                    input(type='text' id='errorDisplay' hidden=true)
-                                                    label(for='content')
-                                                    textarea(name='content')= answer.content
-                                                    button(type='submit' id=`editAnswer-${answer.id}` class='btn-grey') Edit
-                                                form(action=`/api/delete/${answer.id}` method='post' id='delete-form')
-                                                    input(type='hidden' name='answerId' value=answer.id)
-                                                    input(type='hidden' name='questionId' value=answer.id)
-                                                    div
-                                                        button(type='submit' class='btn-grey-l' id='delete-btn') Delete
+                                                div()
+                                                    form(action=`/api/edit/${answer.id}` method='post' id='edit-form')
+                                                        input(type='hidden' name='answerId' value=answer.id)
+                                                        input(type='hidden' name='questionId' value=question.id)
+                                                        input(type='text' id='errorDisplay' hidden=true)
+                                                        label(for='content')
+                                                        textarea(name='content' rows='10' cols='50' style='resize:none;')= answer.content
+                                                        button(type='submit' id=`editAnswer-${answer.id}` class='btn-grey answer-btns') Edit
+                                                    form(action=`/api/delete/${answer.id}` method='post' id='delete-form')
+                                                        input(type='hidden' name='answerId' value=answer.id)
+                                                        input(type='hidden' name='questionId' value=answer.id)
+                                                        button(type='submit' class='btn-grey answer-btns' id='delete-btn') Delete
