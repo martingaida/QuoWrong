@@ -116,9 +116,11 @@ window.addEventListener('DOMContentLoaded', async (event)=>{
                 const container = document.querySelector(`#contentDisplay-${answerId}`)
                 const editForm = document.querySelector(`#edit-form`)
                 const deleteForm = document.querySelector(`#delete-form`)
+                const username = document.querySelector(`#usrans-${data.userId}`)
                 editForm.remove();
-                deleteForm.remove()
-                container.remove()
+                deleteForm.remove();
+                container.remove();
+                username.remove();
             }
 
         });
