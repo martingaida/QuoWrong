@@ -11,7 +11,7 @@ router.get('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next)
 
   const questions = await Question.findAll({
     include: [ 'Answers', 'QuestionVotes', 'Tags', 'User'],
-    order: [['createdAt']]
+    order: [['createdAt', 'DESC']]
   });
 
 
@@ -21,7 +21,8 @@ router.get('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next)
 router.get('/:id(\\d+)', requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
 
   const { id } = req.params
-  const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes','User']});
+  const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes','User'],
+  order: [['createdAt', 'DESC']]});
 
   res.render('question', {  question, csrfToken:req.csrfToken()})
 }))

@@ -227,7 +227,7 @@
 
 .q-form-edit input,
 .q-form-edit textarea {
-    width: 100%;
+    width: 75%;
     height: 20px;
     padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);

@@ -27,7 +27,7 @@ block content
                                     -vote++;
                                 if questionVote.dataValues.upVote === false
                                     -vote--;
-                        div(class='btn-bar')            
+                        div(class='btn-bar')
                             form(action='/questionVotes' method='post' id='vote-form')
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
