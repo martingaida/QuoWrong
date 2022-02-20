@@ -42,12 +42,11 @@ router.delete('/delete/:id(\\d+)', requireAuth, asyncHandler( async (req, res, n
 
   const { id } = req.params;
 
-  console.log(req.params)
-
   const answer = await Answer.findByPk(id)
+
   await answer.destroy();
 
-  res.json({message: 'Success'})
+  res.json({message: 'Success', userId: answer.dataValues.userId})
 }));
 
 router.post('/questionVotes/query', requireAuth, asyncHandler(async (req, res, next) => {
