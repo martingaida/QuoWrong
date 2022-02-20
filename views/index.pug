@@ -62,9 +62,10 @@ block content
                     button(type='submit' class='btn-bar')
                       include svg/downvote.svg
                   div
-                    -var comments = 0;
-                    button(name='questionComments' class='btn-bar')
-                      include svg/comment.svg
-                      p= comments
+                    -var comments = question.Answers.length
+                    a(href=`/questions/${question.id}`)
+                      button(name='questionComments' class='btn-bar')
+                        include svg/comment.svg
+                        p= comments
       div(class='content-right')
         h3 Ads?

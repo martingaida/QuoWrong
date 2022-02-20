@@ -237,3 +237,16 @@ h2 {
 }
 
 
+
+#initals-button{
+    background-color: rgb(185, 43, 39);
+    color: white;
+    border-color: transparent;
+    border-radius: 25px;
+    width: 25px;
+    height: 25px;
+    text-align: justify;
+    padding: 2px 11px 10px 1px;
+    margin: 0 0 0 0;
+
+}

@@ -26,7 +26,7 @@ block content
                                     -vote++;
                                 if questionVote.upVote === 'false'
                                     -vote--;
-                        div(class='btn-bar')            
+                        div(class='btn-bar')
                             form(action='/questionVotes' method='post' id='vote-form')
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 input(type='hidden' name='questionId' value=question.id)
@@ -72,7 +72,6 @@ block content
                             for answer in question.Answers
                                 li(class='answer')
                                     div(class='answer-card')
-                                        p= answer.userName
                                         p(id=`contentDisplay-${answer.id}`)= answer.content
                                         div(class='qa-votes')
                                             if answer.userId === locals.user.dataValues.id
