@@ -19,7 +19,7 @@ h2 {
 }
 
 .btn-grey {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     border-color: transparent;
     border-radius: 25px;
@@ -141,6 +141,13 @@ h2 {
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     margin: 0 25px 0 0;
+}
+
+
+#search-bar:hover,
+#search-bar:focus-visible {
+    outline: none;
+    border: 1px solid #2e69ff;
 }
 
 .content-left {

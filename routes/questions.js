@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Question } = require('../db/models');
+const { Question, User } = require('../db/models');
 const { requireAuth } = require('../auth');
 const { asyncHandler, questionValidators } = require('./utils');
 const csrf = require('csurf');
@@ -22,8 +22,6 @@ router.get('/:id(\\d+)', requireAuth, csrfProtection, asyncHandler( async (req, 
 
   const { id } = req.params
   const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes','User']});
-
-
 
   res.render('question', {  question, csrfToken:req.csrfToken()})
 }))

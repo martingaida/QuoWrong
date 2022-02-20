@@ -27,7 +27,7 @@ block content
       div(class='content-center')
         if questions
           for question in questions
-            div(class='q-card')
+            div(class='q-card' id=`question-${question.id}`)
               div(class='q-card-top')
                 h3: a(href=`/questions/${question.id}`)= question.headline
                 div(class='q-content')
@@ -41,9 +41,9 @@ block content
                 div(class='btn-bar')
                   -var vote = 0;
                   for questionVote in question.QuestionVotes
-                    if questionVote.upVote
+                    if questionVote.dataValues.upVote
                       -vote++;
-                    if questionVote.upVote === 'false'
+                    if questionVote.dataValues.upVote === false
                       -vote--;
                 div(class='btn-bar')
                   form(action='/questionVotes' method='post' id='vote-form')

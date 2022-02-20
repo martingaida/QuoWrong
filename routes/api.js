@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Answer } = require('../db/models');
-const { QuestionVote } = require('../db/models');
+const { Answer, User, QuestionVote } = require('../db/models');
 const { requireAuth } = require('../auth');
 const { asyncHandler, answerValidators } = require('./utils'); //CHANGE AND CREATE ANSWER VALIDATORS
 const { validationResult } = require('express-validator');
@@ -54,7 +53,7 @@ router.delete('/delete/:id(\\d+)', requireAuth, asyncHandler( async (req, res, n
 router.post('/questionVotes/query', requireAuth, asyncHandler(async (req, res, next) => {
 
   const { questionId, userId, upVote } = req.body;
-
+  let voteDelete = false;
   const vote = await QuestionVote.findOne({
     where: {
       questionId,
@@ -64,17 +63,14 @@ router.post('/questionVotes/query', requireAuth, asyncHandler(async (req, res, n
 
   // User has already voted
   if (vote) {
-    console.log(`vote.upVote: ${vote.upVote}`)
-    console.log(`upVote: ${upVote}`)
 
     // User clicks same button second time to delete his vote
     if (vote.upVote.toString() == upVote) {
-      console.log('//////////////////////////////////////////////////////////////// upVote ==== upVote ////////////////////////////////////////////////////////////////')
       await vote.destroy()
+      voteDelete = true;
     }
     // User clicks on the other button to change his vote
     else {
-      console.log('//////////////////////////////////////////////////////////////// ELSE  ////////////////////////////////////////////////////////////////')
       await vote.destroy()
       const newVote = await QuestionVote.create({
         questionId,
@@ -96,7 +92,38 @@ router.post('/questionVotes/query', requireAuth, asyncHandler(async (req, res, n
       questionId,
     }
   })
-  res.json({ data: voteCount })
+  res.json({ data: voteCount, voteDelete: voteDelete })
 }));
+
+
+
+router.get('/questionVotes/query', requireAuth, asyncHandler(async (req, res, next) => {
+
+  const { userId } = req.session.auth
+
+  const votes = await QuestionVote.findAll({
+    where: {
+      userId
+    }
+  });
+
+  res.send({ data: votes })
+
+}));
+
+
+
+router.get('/userName/query', requireAuth, asyncHandler(async (req, res, next) => {
+
+  const userNames = await User.findAll({
+    attributes:['id', 'userName']
+  });
+
+  res.json({ data: userNames });
+
+}));
+
+
+
 
 module.exports = router;
