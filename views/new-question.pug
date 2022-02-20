@@ -8,7 +8,7 @@ block content
       form(action='/questions/new' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         label(for='headline') Question: 
-        textarea(name='headline' placeholder='What\'s your question?' rows='10' cols='50' style='resize:none;')
+        textarea(name='headline' placeholder='What\'s your question?' rows='10' cols='50' style='resize:none;' required)
         label(for='content') Details: 
         textarea(name='content' placeholder='Optional' rows='10' cols='50' style='resize:none;')
         button(type='submit' class='btn-red') Submit
