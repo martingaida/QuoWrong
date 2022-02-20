@@ -1,16 +1,51 @@
-window.addEventListener('DOMContentLoaded', (event)=>{
+window.addEventListener('DOMContentLoaded', async (event)=>{
 
     const editForms = document.querySelectorAll('#edit-form')
-
     const deleteForms = document.querySelectorAll('#delete-form')
-
     const voteForms = document.querySelectorAll('#vote-form')
+
 
 
     const editQuestionAppear = document.querySelector('#question-edit-appear')
     const editQuestionDissapear = document.querySelector('#question-edit-disapear')
     const editQuestionSubmit = document.querySelector('#qa-detail-edit')
 
+    const setVoteColor = (questionId, voteType) => {
+
+        const upVoteButton = document.querySelector(`#question-${questionId} #upVoteButton > path`);
+        const downVoteButton = document.querySelector(`#question-${questionId} #downVoteButton > path`);
+
+        if (voteType === 'true') {
+            upVoteButton.setAttribute('fill', 'red');
+            upVoteButton.setAttribute('stroke', 'red');
+            downVoteButton.setAttribute('fill', 'none');
+            downVoteButton.setAttribute('stroke', '#666');
+        } else if (voteType === 'false') {
+            downVoteButton.setAttribute('fill', 'red');
+            downVoteButton.setAttribute('stroke', 'red');
+            upVoteButton.setAttribute('fill', 'none');
+            upVoteButton.setAttribute('stroke', '#666');
+        } else {
+            downVoteButton.setAttribute('fill', 'none');
+            downVoteButton.setAttribute('stroke', '#666');
+            upVoteButton.setAttribute('fill', 'none');
+            upVoteButton.setAttribute('stroke', '#666');
+        }
+
+        
+    };
+
+    // Grab what questions the user has already
+    // voted on.
+    const res = await fetch('/api/questionVotes/query');
+    const questionVoteData = await res.json();
+
+    for (let voteId = 0; voteId < questionVoteData.data.length; voteId++) {
+        try {
+            setVoteColor(questionVoteData.data[voteId].questionId, questionVoteData.data[voteId].upVote.toString());    
+        } catch {}
+    }
+    
 
 
 
@@ -36,7 +71,7 @@ window.addEventListener('DOMContentLoaded', (event)=>{
             });
             const data = await res.json()
 
-            console.log(data)
+
 
             if(data.errors) {
                 const errorBox = document.querySelectorAll('#edit-form > #errorDisplay').forEach(form => {
@@ -75,7 +110,7 @@ window.addEventListener('DOMContentLoaded', (event)=>{
             });
 
             const data = await res.json();
-            console.log(data)
+
 
             if (data.message === "Success") {
                 const container = document.querySelector(`#contentDisplay-${answerId}`)
@@ -90,6 +125,7 @@ window.addEventListener('DOMContentLoaded', (event)=>{
 
     });
 
+
     voteForms.forEach(form => {
 
         form.addEventListener('submit', async (e) => {
@@ -99,6 +135,7 @@ window.addEventListener('DOMContentLoaded', (event)=>{
             const questionId = formData.get('questionId');
             const userId = formData.get('userId');
             const upVote = formData.get('upVote');
+            
 
             const res = await fetch(`/api/questionVotes/query/`, {
                 method: 'POST',
@@ -112,7 +149,6 @@ window.addEventListener('DOMContentLoaded', (event)=>{
                 })
             });
             const voteCount = await res.json()
-            console.log(voteCount)
 
             let vote = 0;
             for(let i = 0; i < voteCount.data.length; i++) {
@@ -123,16 +159,16 @@ window.addEventListener('DOMContentLoaded', (event)=>{
                     vote--;
                 }
             }
-            // voteCount.data.forEach(vote => {
-            //     if (vote.upVote) {
-            //         vote+=1
-            //     } else {
-            //         vote-=1
-            //     }
-            // })
-            console.log(voteCount.data)
-            const voteCounter = document.querySelector(`#vote-count-${questionId}`)
-            voteCounter.textContent = vote.toString()
+            
+            const voteCounter = document.querySelector(`#vote-count-${questionId}`);
+            voteCounter.textContent = vote.toString();
+
+            // If user is removing a vote, set to default style
+            if (voteCount.voteDelete) {
+                setVoteColor(questionId, 'delete')
+            } else {
+                setVoteColor(questionId, upVote);
+            }
         })
 
     });
