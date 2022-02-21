@@ -44,7 +44,8 @@ mixin navbar()
           -var firstName = locals.user.firstName.charAt(0).toUpperCase()
           -var lastName = locals.user.lastName.charAt(0).toUpperCase()
           -var intials = firstName + lastName
-          button( id='initals-button')=intials + ' '
+          div(class='initials')
+            p= intials
         div(class='username-zone')
           p= locals.user.userName
       else
