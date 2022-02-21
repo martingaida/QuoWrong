@@ -1,7 +1,7 @@
 QUOWRONG-
 
 AN APP TO ASK DUMB QUESTIONS AND GIVE DUMB ANSWERS
-//https://quo-wrong.herokuapp.com/users/login
+https://quo-wrong.herokuapp.com/
 ^LINK TO LIVE SITE
 
 //https://github.com/martingaida/QuoWrong/wiki
