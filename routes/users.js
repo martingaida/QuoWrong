@@ -83,6 +83,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
+
     //find user by userName
     const user = await db.User.findOne({ where: { userName } })
 

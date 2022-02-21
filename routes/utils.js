@@ -69,7 +69,15 @@ const userValidators = [
   const loginValidators = [
     check('userName')
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a value for Userame'),
+      .withMessage('Please provide a value for Userame')
+      .custom((value) => {
+        return db.User.findOne({ where: { userName: value } })
+          .then((user) => {
+            if (user === null) {
+              return Promise.reject('The provided Username is invalid');
+            }
+          });
+      }),
     check('password')
       .exists({ checkFalsy: true })
       .withMessage('Please provide a value for Password'),
