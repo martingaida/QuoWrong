@@ -14,7 +14,7 @@ module.exports = {
       {userId:'5', headline:`Am I poor?`, content:`My parents had to put their cardboard box up for a second mortgage yesterday`, createdAt: new Date(), updatedAt: new Date()},
       {userId:'1', headline:`Fair is foul, and foul is fair?`, content:`Best things to do in New Jersey`, createdAt: new Date(), updatedAt: new Date()},
       {userId:'2', headline:`When should I start to worry?`, content:`There's no tread left on my tires. My car drives like throwing a hot dog down the hallway`, createdAt: new Date(), updatedAt: new Date()},
-      {userId:'3', headline:`Where can I find Affirmative Action?`, content:`Huge Steven Seagal fan`, createdAt: new Date(), updatedAt: new Date()},
+      {userId:'3', headline:`Where can I stream Affirmative Action?`, content:`Huge Steven Seagal fan`, createdAt: new Date(), updatedAt: new Date()},
       {userId:'1', headline:'Is cereal a soup?', content:`Asking for a friend...`, createdAt: new Date(), updatedAt: new Date()},
       {userId:'2', headline: 'I was spanking my 14-year-old son for coming home late and not doing his chores. He then punched me in the face and locked himself in his room. What do I do?', content:'', createdAt: new Date(), updatedAt: new Date()},
       {userId:'3', headline:'Congrats?', content:`People write congrats because they can't spell congrajlashins. Change my mind.`, createdAt: new Date(), updatedAt: new Date()},
