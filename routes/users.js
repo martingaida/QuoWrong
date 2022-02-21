@@ -107,7 +107,6 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     //user was not logged in, reload log in page
     res.render('login', {
       title: 'Login',
-      userName,
       errors,
       csrfToken: req.csrfToken(),
     });
