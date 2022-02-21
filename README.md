@@ -15,7 +15,7 @@ while users can Create Read Upddate and Delete Questions, Answers, and Upvotes, 
 while creating QuoWrong the team faced many challenges, from git merge conflicts to complete functionality failure. our biggest road block came durring our work with user authentification where after hours of work, we could not access the session ID in Pug. after tracing our steps and doing research online as a team we were able to figure out our problem was due to an uncaught syntax error.
 
 Below is the front end javascript event listener that allows the page to change an answers content on the database and web page seamlessly.
-<!-- editForms.forEach(form => {
+editForms.forEach(form => {
         form.addEventListener('submit', async (e) => {
 
             e.preventDefault();
@@ -55,4 +55,4 @@ Below is the front end javascript event listener that allows the page to change 
             }
         })
 
-    }); -->
+    });
