@@ -4,12 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: {model: "Users"}
+      references: {model: 'Users'}
     },
     questionId: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: {model: "Questions"}
+      references: {model: 'Questions'}
     },
     upVote: {
       allowNull: false,

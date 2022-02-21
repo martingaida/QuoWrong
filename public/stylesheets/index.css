@@ -217,7 +217,11 @@ h2 {
 }
 
 .q-img {
-    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    overflow: hidden;
     width: 100%;
     background-color: rgb(106, 176, 241);
 }
@@ -255,5 +259,4 @@ h2 {
     text-align: justify;
     padding: 2px 11px 10px 1px;
     margin: 0 0 0 0;
-
 }
