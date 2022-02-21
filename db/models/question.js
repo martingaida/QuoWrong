@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
     });
     Question.belongsToMany(models.Tag, columMapping);
+    
+    Question.hasOne(models.Image, {
+      foreignKey: 'questionId'
+    });
   };
   return Question;
 };

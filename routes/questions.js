@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Question, User } = require('../db/models');
+const { Question, User, Image } = require('../db/models');
 const { requireAuth } = require('../auth');
 const { asyncHandler, questionValidators } = require('./utils');
 const csrf = require('csurf');
@@ -10,10 +10,9 @@ const csrfProtection = csrf({ cookie:true });
 router.get('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
 
   const questions = await Question.findAll({
-    include: [ 'Answers', 'QuestionVotes', 'Tags', 'User'],
+    include: [ 'Answers', 'QuestionVotes', 'Tags', 'User', 'Image'],
     order: [['createdAt', 'DESC']]
   });
-
 
   res.render('index', { title: 'Ask a question', questions, csrfToken:req.csrfToken()});
 }));
@@ -21,7 +20,7 @@ router.get('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next)
 router.get('/:id(\\d+)', requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
 
   const { id } = req.params
-  const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes','User'],
+  const question = await Question.findByPk(id, { include: ['Answers', 'Tags', 'QuestionVotes', 'User', 'Image'],
   order: [['createdAt', 'DESC']]});
 
   res.render('question', {  question, csrfToken:req.csrfToken()})

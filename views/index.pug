@@ -32,8 +32,11 @@ block content
                 h3: a(href=`/questions/${question.id}`)= question.headline
                 div(class='q-content')
                   p= question.content
+              div(class='q-img')
+                if question.Image
+                  img(src=`${question.Image.dataValues.src}`)
               div(class='q-bottom')
-                //- form(action=`/questions/${question.id}` method='get')
+                form(action=`/questions/${question.id}` method='get')
                 a(href=`/questions/${question.id}`)
                   button(class='btn-bar')
                     include svg/answer-pen.svg

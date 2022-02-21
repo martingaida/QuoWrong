@@ -217,9 +217,17 @@ h2 {
 }
 
 .q-img {
-    height: 350px;
-    width: 100%;
-    background-color: rgb(106, 176, 241);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 300px;
+    background-color: white;
+    margin: 0 0 25px 0;
+}
+
+.q-img img {
+    height: 100%;
 }
 
 .question-votes {
@@ -243,17 +251,18 @@ h2 {
     background-color: rgb(225, 225, 225);
 }
 
-
-
-#initals-button{
-    background-color: rgb(185, 43, 39);
+.initials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
+    background-color: rgb(185, 43, 39);
     border-color: transparent;
-    border-radius: 25px;
-    width: 25px;
-    height: 25px;
-    text-align: justify;
-    padding: 2px 11px 10px 1px;
-    margin: 0 0 0 0;
+    border-radius: 35px;
+    width: 35px;
+    height: 35px;
+}
 
+.initials p {
+    color: white;
 }

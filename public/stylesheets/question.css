@@ -148,9 +148,6 @@
     padding: 0 20px 0 20px;
 }
 
-
-
-
 .btn-bar {
     box-sizing: border-box;
     display: flex;
@@ -161,9 +158,6 @@
     background-color: transparent;
     border: none;
 }
-
-
-
 
 .answer-zone {
     padding: 35px 20px 0 20px;
@@ -219,16 +213,18 @@
     border-radius: 5px;
     font-size: 7px;
     font-weight: bold;
-    width: 500px;
+    width: 100%;
     min-height: 200px;
-    margin: 0 0 10vh 0;
-    padding: 60px 75px 60px 75px;
 }
 
 .q-form-edit input,
 .q-form-edit textarea {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
     width: 75%;
-    height: 20px;
+    height: 40px;
     padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     margin: 5px 0 12px 0;
